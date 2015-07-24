@@ -1,0 +1,1275 @@
+ARM Linker, 5.03 [Build 76] [MDK-ARM Standard Cortex-M only]
+
+==============================================================================
+
+Section Cross References
+
+    board.o(.text) refers to hal_lld.o(.text) for stm32_clock_init
+    vectors.o(RESET) refers to cstartup.o(MSTACK) for __initial_msp
+    vectors.o(RESET) refers to cstartup.o(.text) for Reset_Handler
+    vectors.o(RESET) refers to vectors.o(.text) for NMI_Handler
+    vectors.o(RESET) refers to chcore_v7m.o(.text) for SVC_Handler
+    vectors.o(RESET) refers to st_lld.o(.text) for VectorB0
+    vectors.o(RESET) refers to gpt_lld.o(.text) for VectorB4
+    vectors.o(RESET) refers to serial_lld.o(.text) for Vector15C
+    cstartup.o(MSTACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    cstartup.o(CSTACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    cstartup.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    cstartup.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    cstartup.o(.text) refers to board.o(.text) for __early_init
+    cstartup.o(.text) refers to cstartup.o(CSTACK) for __initial_sp
+    cstartup.o(.text) refers to __main.o(!!!main) for __main
+    cstartup.o(.text) refers to cstartup.o(HEAP) for Heap_Mem
+    chcore_v7m.o(.text) refers to chschd.o(.text) for chSchIsPreemptionRequired
+    chcore_v7m.o(.text) refers to chcoreasm_v7m.o(.text) for _port_switch_from_isr
+    chcoreasm_v7m.o(.text) refers to chthreads.o(.text) for chThdExit
+    chcoreasm_v7m.o(.text) refers to chschd.o(.text) for chSchDoReschedule
+    chvt.o(.text) refers to st.o(.text) for stStartAlarm
+    chvt.o(.text) refers to chschd.o(.bss) for ch
+    chcond.o(.text) refers to chschd.o(.text) for chSchWakeupS
+    chcond.o(.text) refers to chmtx.o(.text) for chMtxUnlockS
+    chcond.o(.text) refers to chschd.o(.bss) for ch
+    chdynamic.o(.text) refers to chmempools.o(.text) for chPoolFree
+    chdynamic.o(.text) refers to chheap.o(.text) for chHeapFree
+    chdynamic.o(.text) refers to chthreads.o(.text) for chThdCreateI
+    chdynamic.o(.text) refers to chschd.o(.text) for chSchWakeupS
+    chevents.o(.text) refers to chschd.o(.text) for chSchReadyI
+    chevents.o(.text) refers to chschd.o(.bss) for ch
+    chheap.o(.text) refers to chmtx.o(.text) for chMtxObjectInit
+    chheap.o(.text) refers to chmemcore.o(.text) for chCoreAlloc
+    chheap.o(.text) refers to chheap.o(.bss) for .bss
+    chmboxes.o(.text) refers to chsem.o(.text) for chSemObjectInit
+    chmboxes.o(.text) refers to chschd.o(.text) for chSchRescheduleS
+    chmemcore.o(.text) refers to chmemcore.o(.data) for .data
+    chmsg.o(.text) refers to chschd.o(.text) for chSchReadyI
+    chmsg.o(.text) refers to chschd.o(.bss) for ch
+    chmtx.o(.text) refers to chschd.o(.text) for chSchReadyI
+    chmtx.o(.text) refers to chschd.o(.bss) for ch
+    chqueues.o(.text) refers to chthreads.o(.text) for chThdDequeueAllI
+    chregistry.o(.text) refers to chdynamic.o(.text) for chThdRelease
+    chregistry.o(.text) refers to chschd.o(.bss) for ch
+    chschd.o(.text) refers to chcoreasm_v7m.o(.text) for _port_switch
+    chschd.o(.text) refers to chvt.o(.text) for chVTDoSetI
+    chschd.o(.text) refers to chschd.o(.bss) for .bss
+    chsem.o(.text) refers to chschd.o(.text) for chSchReadyI
+    chsem.o(.text) refers to chschd.o(.bss) for ch
+    chsys.o(.text) refers to chschd.o(.text) for _scheduler_init
+    chsys.o(.text) refers to chvt.o(.text) for _vt_init
+    chsys.o(.text) refers to chtm.o(.text) for _tm_init
+    chsys.o(.text) refers to chmemcore.o(.text) for _core_init
+    chsys.o(.text) refers to chheap.o(.text) for _heap_init
+    chsys.o(.text) refers to chthreads.o(.text) for _thread_init
+    chsys.o(.text) refers to st.o(.text) for stStopAlarm
+    chsys.o(.text) refers to chschd.o(.bss) for ch
+    chsys.o(.text) refers to chregistry.o(.constdata) for ch_debug
+    chthreads.o(.text) refers to chschd.o(.text) for chSchWakeupS
+    chthreads.o(.text) refers to chdynamic.o(.text) for chThdRelease
+    chthreads.o(.text) refers to chschd.o(.bss) for ch
+    chthreads.o(.text) refers to chcoreasm_v7m.o(.text) for _port_thread_start
+    chtm.o(.text) refers to chschd.o(.bss) for ch
+    serial.o(.text) refers to chqueues.o(.text) for chOQWriteTimeout
+    serial.o(.text) refers to serial_lld.o(.text) for sd_lld_init
+    serial.o(.text) refers to chschd.o(.text) for chSchRescheduleS
+    serial.o(.text) refers to chevents.o(.text) for chEvtBroadcastFlagsI
+    serial.o(.text) refers to serial.o(.constdata) for .constdata
+    serial.o(.constdata) refers to serial.o(.text) for write
+    gpt.o(.text) refers to gpt_lld.o(.text) for gpt_lld_init
+    hal.o(.text) refers to hal_lld.o(.text) for hal_lld_init
+    hal.o(.text) refers to pal_lld.o(.text) for _pal_lld_init
+    hal.o(.text) refers to gpt.o(.text) for gptInit
+    hal.o(.text) refers to serial.o(.text) for sdInit
+    hal.o(.text) refers to board.o(.text) for boardInit
+    hal.o(.text) refers to st.o(.text) for stInit
+    hal.o(.text) refers to board.o(.constdata) for pal_default_config
+    st.o(.text) refers to st_lld.o(.text) for st_lld_init
+    gpt_lld.o(.text) refers to chcore_v7m.o(.text) for _port_irq_epilogue
+    gpt_lld.o(.text) refers to gpt.o(.text) for gptObjectInit
+    gpt_lld.o(.text) refers to nvic.o(.text) for nvicEnableVector
+    gpt_lld.o(.text) refers to gpt_lld.o(.bss) for .bss
+    serial_lld.o(.text) refers to chevents.o(.text) for chEvtBroadcastFlagsI
+    serial_lld.o(.text) refers to serial.o(.text) for sdIncomingDataI
+    serial_lld.o(.text) refers to chqueues.o(.text) for chOQGetI
+    serial_lld.o(.text) refers to chcore_v7m.o(.text) for _port_irq_epilogue
+    serial_lld.o(.text) refers to nvic.o(.text) for nvicEnableVector
+    serial_lld.o(.text) refers to serial_lld.o(.bss) for .bss
+    serial_lld.o(.text) refers to serial_lld.o(.constdata) for .constdata
+    st_lld.o(.text) refers to chsys.o(.text) for chSysTimerHandlerI
+    st_lld.o(.text) refers to chcore_v7m.o(.text) for _port_irq_epilogue
+    st_lld.o(.text) refers to nvic.o(.text) for nvicEnableVector
+    irq_storm.o(.text) refers to chmboxes.o(.text) for chMBFetch
+    irq_storm.o(.text) refers to gpt.o(.text) for gptStart
+    irq_storm.o(.text) refers to chthreads.o(.text) for chThdCreateStatic
+    irq_storm.o(.text) refers to chprintf.o(.text) for chvprintf
+    irq_storm.o(.text) refers to chschd.o(.bss) for ch
+    irq_storm.o(.text) refers to irq_storm.o(.bss) for .bss
+    irq_storm.o(.text) refers to irq_storm.o(.data) for .data
+    chprintf.o(.text) refers to memstreams.o(.text) for msObjectInit
+    memstreams.o(.text) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    memstreams.o(.text) refers to memstreams.o(.constdata) for .constdata
+    memstreams.o(.constdata) refers to memstreams.o(.text) for writes
+    main.o(.text) refers to chthreads.o(.text) for chThdSleep
+    main.o(.text) refers to hal.o(.text) for halInit
+    main.o(.text) refers to chsys.o(.text) for chSysInit
+    main.o(.text) refers to serial.o(.text) for sdStart
+    main.o(.text) refers to pal_lld.o(.text) for _pal_lld_setgroupmode
+    main.o(.text) refers to test.o(.text) for TestThread
+    main.o(.text) refers to chschd.o(.bss) for ch
+    main.o(.text) refers to serial_lld.o(.bss) for SD6
+    main.o(.text) refers to main.o(.bss) for .bss
+    main.o(.text) refers to web.o(.text) for http_server
+    main.o(.text) refers to web.o(.bss) for wa_http_server
+    main.o(.text) refers to mqtt.o(.text) for mqtt_client
+    main.o(.text) refers to mqtt.o(.bss) for wa_mqtt_client
+    mqtt.o(.text) refers to strncmp.o(.text) for strncmp
+    mqtt.o(.text) refers to chprintf.o(.text) for chvprintf
+    mqtt.o(.text) refers to mqttlwip.o(.text) for NewNetwork
+    mqtt.o(.text) refers to mqttclient.o(.text) for MQTTClient
+    mqtt.o(.text) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    mqtt.o(.text) refers to chthreads.o(.text) for chThdSleep
+    mqtt.o(.text) refers to serial_lld.o(.bss) for SD6
+    mqtt.o(.text) refers to mqtt.o(.constdata) for .constdata
+    mqttclient.o(.text) refers to mqttlwip.o(.text) for expired
+    mqttclient.o(.text) refers to mqttpacket.o(.text) for MQTTPacket_encode
+    mqttclient.o(.text) refers to mqttconnectclient.o(.text) for MQTTSerialize_pingreq
+    mqttclient.o(.text) refers to mqttdeserializepublish.o(.text) for MQTTDeserialize_publish
+    mqttclient.o(.text) refers to mqttserializepublish.o(.text) for MQTTSerialize_ack
+    mqttclient.o(.text) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    mqttclient.o(.text) refers to mqttsubscribeclient.o(.text) for MQTTSerialize_subscribe
+    mqttclient.o(.text) refers to mqttunsubscribeclient.o(.text) for MQTTSerialize_unsubscribe
+    mqttclient.o(.text) refers to mqttclient.o(.constdata) for .constdata
+    mqttconnectclient.o(.text) refers to mqttpacket.o(.text) for MQTTstrlen
+    mqttconnectserver.o(.text) refers to memcmp.o(.text) for memcmp
+    mqttconnectserver.o(.text) refers to mqttpacket.o(.text) for readChar
+    mqttdeserializepublish.o(.text) refers to mqttpacket.o(.text) for readChar
+    mqttformat.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    mqttformat.o(.text) refers to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    mqttformat.o(.text) refers to _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) for _printf_s
+    mqttformat.o(.text) refers to _printf_dec.o(.text) for _printf_int_dec
+    mqttformat.o(.text) refers to _printf_str.o(.text) for _printf_str
+    mqttformat.o(.text) refers to __2snprintf.o(.text) for __2snprintf
+    mqttformat.o(.text) refers to mqttpacket.o(.text) for MQTTPacket_decodeBuf
+    mqttformat.o(.text) refers to mqttconnectclient.o(.text) for MQTTDeserialize_connack
+    mqttformat.o(.text) refers to mqttdeserializepublish.o(.text) for MQTTDeserialize_publish
+    mqttformat.o(.text) refers to mqttsubscribeclient.o(.text) for MQTTDeserialize_suback
+    mqttformat.o(.text) refers to mqttunsubscribeclient.o(.text) for MQTTDeserialize_unsuback
+    mqttformat.o(.text) refers to mqttconnectserver.o(.text) for MQTTDeserialize_connect
+    mqttformat.o(.text) refers to mqttformat.o(.data) for .data
+    mqttformat.o(.text) refers to mqttformat.o(.constdata) for .constdata
+    mqttformat.o(.text) refers to mqttsubscribeserver.o(.text) for MQTTDeserialize_subscribe
+    mqttformat.o(.text) refers to mqttunsubscribeserver.o(.text) for MQTTDeserialize_unsubscribe
+    mqttformat.o(.data) refers to mqttformat.o(.conststring) for .conststring
+    mqttlwip.o(.text) refers to api_lib.o(.text) for netconn_recv
+    mqttlwip.o(.text) refers to pbuf.o(.text) for pbuf_copy_partial
+    mqttlwip.o(.text) refers to netbuf.o(.text) for netbuf_delete
+    mqttpacket.o(.text) refers to strlen.o(.text) for strlen
+    mqttpacket.o(.text) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    mqttpacket.o(.text) refers to strncmp.o(.text) for strncmp
+    mqttpacket.o(.text) refers to mqttpacket.o(.data) for .data
+    mqttserializepublish.o(.text) refers to mqttpacket.o(.text) for MQTTstrlen
+    mqttserializepublish.o(.text) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    mqttsubscribeclient.o(.text) refers to mqttpacket.o(.text) for MQTTstrlen
+    mqttsubscribeserver.o(.text) refers to mqttpacket.o(.text) for readChar
+    mqttunsubscribeclient.o(.text) refers to mqttpacket.o(.text) for MQTTstrlen
+    mqttunsubscribeclient.o(.text) refers to mqttdeserializepublish.o(.text) for MQTTDeserialize_ack
+    mqttunsubscribeserver.o(.text) refers to mqttpacket.o(.text) for readChar
+    web.o(.text) refers to api_lib.o(.text) for netconn_new_with_proto_and_callback
+    web.o(.text) refers to chprintf.o(.text) for chvprintf
+    web.o(.text) refers to chthreads.o(.text) for chThdSetPriority
+    web.o(.text) refers to netbuf.o(.text) for netbuf_data
+    web.o(.text) refers to serial_lld.o(.bss) for SD6
+    web.o(.text) refers to web.o(.constdata) for .constdata
+    api_lib.o(.text) refers to api_msg.o(.text) for netconn_alloc
+    api_lib.o(.text) refers to tcpip.o(.text) for tcpip_apimsg
+    api_lib.o(.text) refers to sys_arch.o(.text) for sys_sem_free
+    api_lib.o(.text) refers to memp.o(.text) for memp_free
+    api_lib.o(.text) refers to sys.o(.text) for sys_sem_wait
+    api_msg.o(.text) refers to pbuf.o(.text) for pbuf_alloc
+    api_msg.o(.text) refers to memp.o(.text) for memp_malloc
+    api_msg.o(.text) refers to sys_arch.o(.text) for sys_mbox_trypost
+    api_msg.o(.text) refers to netbuf.o(.text) for netbuf_delete
+    api_msg.o(.text) refers to tcp.o(.text) for tcp_arg
+    api_msg.o(.text) refers to api_lib.o(.text) for netconn_delete
+    api_msg.o(.text) refers to raw.o(.text) for raw_new
+    api_msg.o(.text) refers to udp.o(.text) for udp_new
+    api_msg.o(.text) refers to strcmpv7m.o(.text) for strcmp
+    api_msg.o(.text) refers to dns.o(.text) for dns_gethostbyname
+    api_msg.o(.text) refers to tcp_out.o(.text) for tcp_write
+    netbuf.o(.text) refers to memp.o(.text) for memp_malloc
+    netbuf.o(.text) refers to pbuf.o(.text) for pbuf_free
+    netdb.o(.text) refers to api_lib.o(.text) for netconn_gethostbyname
+    netdb.o(.text) refers to strlen.o(.text) for strlen
+    netdb.o(.text) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    netdb.o(.text) refers to mem.o(.text) for mem_free
+    netdb.o(.text) refers to atoi.o(.text) for atoi
+    netdb.o(.text) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    netdb.o(.text) refers to netdb.o(.data) for .data
+    netdb.o(.text) refers to netdb.o(.bss) for .bss
+    sockets.o(.text) refers to sys_arch.o(.text) for sys_sem_new
+    sockets.o(.text) refers to sys.o(.text) for sys_sem_wait
+    sockets.o(.text) refers to api_lib.o(.text) for netconn_accept
+    sockets.o(.text) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    sockets.o(.text) refers to netbuf.o(.text) for netbuf_delete
+    sockets.o(.text) refers to sockets.o(.data) for .data
+    sockets.o(.text) refers to sockets.o(.bss) for .bss
+    sockets.o(.text) refers to sockets.o(.constdata) for .constdata
+    sockets.o(.text) refers to pbuf.o(.text) for pbuf_copy_partial
+    sockets.o(.text) refers to tcpip.o(.text) for tcpip_callback_with_block
+    tcpip.o(.text) refers to tcp.o(.text) for tcp_tmr
+    tcpip.o(.text) refers to sys.o(.text) for sys_timeout
+    tcpip.o(.text) refers to dhcp.o(.text) for dhcp_coarse_tmr
+    tcpip.o(.text) refers to dns.o(.text) for dns_tmr
+    tcpip.o(.text) refers to memp.o(.text) for memp_free
+    tcpip.o(.text) refers to sys_arch.o(.text) for sys_mbox_trypost
+    tcpip.o(.text) refers to init.o(.text) for lwip_init
+    tcpip.o(.text) refers to pbuf.o(.text) for pbuf_free
+    tcpip.o(.text) refers to tcp.o(.data) for tcp_active_pcbs
+    tcpip.o(.text) refers to tcpip.o(.data) for .data
+    tcpip.o(.text) refers to mem.o(.text) for mem_free
+    pbuf.o(.text) refers to mem.o(.text) for mem_free
+    pbuf.o(.text) refers to memp.o(.text) for memp_free
+    pbuf.o(.text) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    dhcp.o(.text) refers to pbuf.o(.text) for pbuf_alloc
+    dhcp.o(.text) refers to udp.o(.text) for udp_sendto_if
+    dhcp.o(.text) refers to dhcp.o(.data) for .data
+    dhcp.o(.text) refers to netif.o(.data) for netif_list
+    dhcp.o(.text) refers to netif.o(.text) for netif_set_down
+    dhcp.o(.text) refers to mem.o(.text) for mem_free
+    dhcp.o(.text) refers to dns.o(.text) for dns_setserver
+    dhcp.o(.text) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    dns.o(.text) refers to pbuf.o(.text) for pbuf_copy_partial
+    dns.o(.text) refers to udp.o(.text) for udp_new
+    dns.o(.text) refers to strlen.o(.text) for strlen
+    dns.o(.text) refers to strcmpv7m.o(.text) for strcmp
+    dns.o(.text) refers to dns.o(.data) for .data
+    dns.o(.text) refers to dns.o(.bss) for .bss
+    dns.o(.text) refers to strcpy.o(.text) for strcpy
+    init.o(.text) refers to sys_arch.o(.text) for sys_init
+    init.o(.text) refers to mem.o(.text) for mem_init
+    init.o(.text) refers to memp.o(.text) for memp_init
+    init.o(.text) refers to sockets.o(.text) for lwip_socket_init
+    init.o(.text) refers to dns.o(.text) for dns_init
+    mem.o(.text) refers to sys_arch.o(.text) for sys_sem_new
+    mem.o(.text) refers to rt_memclr.o(.text) for __aeabi_memclr
+    mem.o(.text) refers to mem.o(.bss) for .bss
+    mem.o(.text) refers to mem.o(.data) for .data
+    memp.o(.text) refers to memp.o(.bss) for .bss
+    memp.o(.text) refers to memp.o(.constdata) for .constdata
+    netif.o(.text) refers to tcp.o(.text) for tcp_abandon
+    netif.o(.text) refers to tcp.o(.data) for tcp_active_pcbs
+    netif.o(.text) refers to netif.o(.data) for .data
+    raw.o(.text) refers to pbuf.o(.text) for pbuf_header
+    raw.o(.text) refers to memp.o(.text) for memp_free
+    raw.o(.text) refers to raw.o(.data) for .data
+    sys.o(.text) refers to sys_arch.o(.text) for sys_arch_mbox_fetch
+    sys.o(.text) refers to memp.o(.text) for memp_free
+    tcp.o(.text) refers to pbuf.o(.text) for pbuf_free
+    tcp.o(.text) refers to memp.o(.text) for memp_free
+    tcp.o(.text) refers to tcp_out.o(.text) for tcp_zero_window_probe
+    tcp.o(.text) refers to tcp.o(.data) for .data
+    tcp.o(.text) refers to tcp.o(.constdata) for .constdata
+    tcp.o(.text) refers to tcpip.o(.text) for tcp_timer_needed
+    tcp.o(.text) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    tcp.o(.data) refers to tcp.o(.conststring) for .conststring
+    tcp_in.o(.text) refers to tcp_out.o(.text) for tcp_rexmit_fast
+    tcp_in.o(.text) refers to pbuf.o(.text) for pbuf_clen
+    tcp_in.o(.text) refers to tcp.o(.text) for tcp_seg_free
+    tcp_in.o(.text) refers to tcp_in.o(.data) for .data
+    tcp_in.o(.text) refers to tcp.o(.data) for tcp_ticks
+    tcp_in.o(.text) refers to tcp_in.o(.bss) for .bss
+    tcp_in.o(.text) refers to tcpip.o(.text) for tcp_timer_needed
+    tcp_in.o(.text) refers to memp.o(.text) for memp_free
+    tcp_out.o(.text) refers to memp.o(.text) for memp_malloc
+    tcp_out.o(.text) refers to pbuf.o(.text) for pbuf_alloc
+    tcp_out.o(.text) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    tcp_out.o(.text) refers to tcp.o(.text) for tcp_segs_free
+    tcp_out.o(.text) refers to tcp_in.o(.data) for tcp_input_pcb
+    tcp_out.o(.text) refers to tcp.o(.data) for tcp_ticks
+    udp.o(.text) refers to pbuf.o(.text) for pbuf_header
+    udp.o(.text) refers to memp.o(.text) for memp_free
+    udp.o(.text) refers to udp.o(.data) for .data
+    sys_arch.o(.text) refers to chheap.o(.text) for chHeapAlloc
+    sys_arch.o(.text) refers to chsem.o(.text) for chSemObjectInit
+    sys_arch.o(.text) refers to chschd.o(.text) for chSchRescheduleS
+    sys_arch.o(.text) refers to chmboxes.o(.text) for chMBObjectInit
+    sys_arch.o(.text) refers to chmemcore.o(.text) for chCoreAlloc
+    sys_arch.o(.text) refers to chsys.o(.text) for chSysGetStatusAndLockX
+    sys_arch.o(.text) refers to chthreads.o(.text) for chThdCreateI
+    test.o(.text) refers to chthreads.o(.text) for chThdTerminate
+    test.o(.text) refers to chvt.o(.text) for chVTDoResetI
+    test.o(.text) refers to test.o(.data) for .data
+    test.o(.text) refers to test.o(.bss) for .bss
+    test.o(.constdata) refers to test.o(.bss) for test
+    test.o(.data) refers to testsys.o(.constdata) for patternsys
+    test.o(.data) refers to testthd.o(.constdata) for patternthd
+    test.o(.data) refers to testsem.o(.constdata) for patternsem
+    test.o(.data) refers to testmtx.o(.constdata) for patternmtx
+    test.o(.data) refers to testmsg.o(.constdata) for patternmsg
+    test.o(.data) refers to testmbox.o(.constdata) for patternmbox
+    test.o(.data) refers to testevt.o(.constdata) for patternevt
+    test.o(.data) refers to testheap.o(.constdata) for patternheap
+    test.o(.data) refers to testpools.o(.constdata) for patternpools
+    test.o(.data) refers to testdyn.o(.constdata) for patterndyn
+    test.o(.data) refers to testqueues.o(.constdata) for patternqueues
+    test.o(.data) refers to testbmk.o(.constdata) for patternbmk
+    testbmk.o(.text) refers to chthreads.o(.text) for chThdExit
+    testbmk.o(.text) refers to chmsg.o(.text) for chMsgWait
+    testbmk.o(.text) refers to test.o(.text) for test_wait_tick
+    testbmk.o(.text) refers to chschd.o(.text) for chSchGoSleepS
+    testbmk.o(.text) refers to chsem.o(.text) for chSemWait
+    testbmk.o(.text) refers to chschd.o(.bss) for ch
+    testbmk.o(.text) refers to test.o(.constdata) for wa
+    testbmk.o(.text) refers to test.o(.bss) for threads
+    testbmk.o(.text) refers to test.o(.data) for test_timer_done
+    testbmk.o(.text) refers to testbmk.o(.bss) for .bss
+    testbmk.o(.text) refers to chqueues.o(.text) for chIQObjectInit
+    testbmk.o(.text) refers to chvt.o(.text) for chVTDoSetI
+    testbmk.o(.text) refers to chmtx.o(.text) for chMtxObjectInit
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk1_execute
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk2_execute
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk3_execute
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk4_execute
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk5_execute
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk6_execute
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk7_setup
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk8_execute
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk9_execute
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk10_execute
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk11_setup
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk12_setup
+    testbmk.o(.constdata) refers to testbmk.o(.conststring) for .conststring
+    testbmk.o(.constdata) refers to testbmk.o(.text) for bmk13_execute
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk1
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk2
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk3
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk4
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk5
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk6
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk7
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk8
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk9
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk10
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk11
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk12
+    testbmk.o(.constdata) refers to testbmk.o(.constdata) for testbmk13
+    testdyn.o(.text) refers to test.o(.text) for test_emit_token
+    testdyn.o(.text) refers to chheap.o(.text) for chHeapObjectInit
+    testdyn.o(.text) refers to chdynamic.o(.text) for chThdCreateFromHeap
+    testdyn.o(.text) refers to chmempools.o(.text) for chPoolObjectInit
+    testdyn.o(.text) refers to chregistry.o(.text) for chRegFirstThread
+    testdyn.o(.text) refers to chthreads.o(.text) for chThdSleep
+    testdyn.o(.text) refers to test.o(.bss) for test
+    testdyn.o(.text) refers to testdyn.o(.bss) for .bss
+    testdyn.o(.text) refers to chschd.o(.bss) for ch
+    testdyn.o(.text) refers to test.o(.bss) for threads
+    testdyn.o(.text) refers to test.o(.constdata) for wa
+    testdyn.o(.constdata) refers to testdyn.o(.conststring) for .conststring
+    testdyn.o(.constdata) refers to testdyn.o(.text) for dyn1_setup
+    testdyn.o(.constdata) refers to testdyn.o(.conststring) for .conststring
+    testdyn.o(.constdata) refers to testdyn.o(.text) for dyn2_setup
+    testdyn.o(.constdata) refers to testdyn.o(.conststring) for .conststring
+    testdyn.o(.constdata) refers to testdyn.o(.text) for dyn3_setup
+    testdyn.o(.constdata) refers to testdyn.o(.constdata) for testdyn1
+    testdyn.o(.constdata) refers to testdyn.o(.constdata) for testdyn2
+    testdyn.o(.constdata) refers to testdyn.o(.constdata) for testdyn3
+    testevt.o(.text) refers to chevents.o(.text) for chEvtGetAndClearEvents
+    testevt.o(.text) refers to test.o(.text) for test_emit_token
+    testevt.o(.text) refers to chthreads.o(.text) for chThdSleep
+    testevt.o(.text) refers to testevt.o(.data) for .data
+    testevt.o(.text) refers to testevt.o(.constdata) for .constdata
+    testevt.o(.text) refers to chschd.o(.bss) for ch
+    testevt.o(.text) refers to test.o(.constdata) for wa
+    testevt.o(.text) refers to test.o(.bss) for threads
+    testevt.o(.constdata) refers to testevt.o(.text) for h1
+    testevt.o(.constdata) refers to testevt.o(.conststring) for .conststring
+    testevt.o(.constdata) refers to testevt.o(.text) for evt1_setup
+    testevt.o(.constdata) refers to testevt.o(.conststring) for .conststring
+    testevt.o(.constdata) refers to testevt.o(.text) for evt2_setup
+    testevt.o(.constdata) refers to testevt.o(.conststring) for .conststring
+    testevt.o(.constdata) refers to testevt.o(.text) for evt3_setup
+    testevt.o(.constdata) refers to testevt.o(.constdata) for testevt1
+    testevt.o(.constdata) refers to testevt.o(.constdata) for testevt2
+    testevt.o(.constdata) refers to testevt.o(.constdata) for testevt3
+    testheap.o(.text) refers to chheap.o(.text) for chHeapObjectInit
+    testheap.o(.text) refers to chmemcore.o(.text) for chCoreGetStatusX
+    testheap.o(.text) refers to test.o(.text) for _test_assert
+    testheap.o(.text) refers to test.o(.bss) for test
+    testheap.o(.text) refers to testheap.o(.bss) for .bss
+    testheap.o(.constdata) refers to testheap.o(.conststring) for .conststring
+    testheap.o(.constdata) refers to testheap.o(.text) for heap1_setup
+    testheap.o(.constdata) refers to testheap.o(.constdata) for testheap1
+    testmbox.o(.text) refers to chmboxes.o(.text) for chMBObjectInit
+    testmbox.o(.text) refers to test.o(.text) for _test_assert
+    testmbox.o(.text) refers to test.o(.bss) for test
+    testmbox.o(.text) refers to testmbox.o(.data) for .data
+    testmbox.o(.constdata) refers to testmbox.o(.conststring) for .conststring
+    testmbox.o(.constdata) refers to testmbox.o(.text) for mbox1_setup
+    testmbox.o(.constdata) refers to testmbox.o(.constdata) for testmbox1
+    testmbox.o(.data) refers to test.o(.bss) for test
+    testmsg.o(.text) refers to chmsg.o(.text) for chMsgSend
+    testmsg.o(.text) refers to chthreads.o(.text) for chThdCreateStatic
+    testmsg.o(.text) refers to test.o(.text) for test_emit_token
+    testmsg.o(.text) refers to chschd.o(.bss) for ch
+    testmsg.o(.text) refers to test.o(.constdata) for wa
+    testmsg.o(.text) refers to test.o(.bss) for threads
+    testmsg.o(.constdata) refers to testmsg.o(.conststring) for .conststring
+    testmsg.o(.constdata) refers to testmsg.o(.text) for msg1_execute
+    testmsg.o(.constdata) refers to testmsg.o(.constdata) for testmsg1
+    testmtx.o(.text) refers to chmtx.o(.text) for chMtxObjectInit
+    testmtx.o(.text) refers to test.o(.text) for test_emit_token
+    testmtx.o(.text) refers to chthreads.o(.text) for chThdCreateStatic
+    testmtx.o(.text) refers to chschd.o(.text) for chSchRescheduleS
+    testmtx.o(.text) refers to testmtx.o(.data) for .data
+    testmtx.o(.text) refers to chschd.o(.bss) for ch
+    testmtx.o(.text) refers to test.o(.constdata) for wa
+    testmtx.o(.text) refers to test.o(.bss) for threads
+    testmtx.o(.text) refers to chcond.o(.text) for chCondObjectInit
+    testmtx.o(.constdata) refers to testmtx.o(.conststring) for .conststring
+    testmtx.o(.constdata) refers to testmtx.o(.text) for mtx1_setup
+    testmtx.o(.constdata) refers to testmtx.o(.conststring) for .conststring
+    testmtx.o(.constdata) refers to testmtx.o(.text) for mtx4_setup
+    testmtx.o(.constdata) refers to testmtx.o(.conststring) for .conststring
+    testmtx.o(.constdata) refers to testmtx.o(.text) for mtx5_setup
+    testmtx.o(.constdata) refers to testmtx.o(.conststring) for .conststring
+    testmtx.o(.constdata) refers to testmtx.o(.text) for mtx6_setup
+    testmtx.o(.constdata) refers to testmtx.o(.conststring) for .conststring
+    testmtx.o(.constdata) refers to testmtx.o(.text) for mtx7_setup
+    testmtx.o(.constdata) refers to testmtx.o(.conststring) for .conststring
+    testmtx.o(.constdata) refers to testmtx.o(.text) for mtx8_setup
+    testmtx.o(.constdata) refers to testmtx.o(.constdata) for testmtx1
+    testmtx.o(.constdata) refers to testmtx.o(.constdata) for testmtx4
+    testmtx.o(.constdata) refers to testmtx.o(.constdata) for testmtx5
+    testmtx.o(.constdata) refers to testmtx.o(.constdata) for testmtx6
+    testmtx.o(.constdata) refers to testmtx.o(.constdata) for testmtx7
+    testmtx.o(.constdata) refers to testmtx.o(.constdata) for testmtx8
+    testpools.o(.text) refers to chmempools.o(.text) for chPoolObjectInit
+    testpools.o(.text) refers to test.o(.text) for _test_assert
+    testpools.o(.text) refers to testpools.o(.data) for .data
+    testpools.o(.text) refers to test.o(.constdata) for wa
+    testpools.o(.constdata) refers to testpools.o(.conststring) for .conststring
+    testpools.o(.constdata) refers to testpools.o(.text) for pools1_setup
+    testpools.o(.constdata) refers to testpools.o(.constdata) for testpools1
+    testqueues.o(.text) refers to chqueues.o(.text) for chIQObjectInit
+    testqueues.o(.text) refers to test.o(.text) for _test_assert
+    testqueues.o(.text) refers to chthreads.o(.text) for chThdCreateStatic
+    testqueues.o(.text) refers to test.o(.constdata) for wa
+    testqueues.o(.text) refers to testqueues.o(.data) for .data
+    testqueues.o(.text) refers to chschd.o(.bss) for ch
+    testqueues.o(.text) refers to test.o(.bss) for threads
+    testqueues.o(.constdata) refers to testqueues.o(.conststring) for .conststring
+    testqueues.o(.constdata) refers to testqueues.o(.text) for queues1_setup
+    testqueues.o(.constdata) refers to testqueues.o(.conststring) for .conststring
+    testqueues.o(.constdata) refers to testqueues.o(.text) for queues2_setup
+    testqueues.o(.constdata) refers to testqueues.o(.constdata) for testqueues1
+    testqueues.o(.constdata) refers to testqueues.o(.constdata) for testqueues2
+    testqueues.o(.data) refers to test.o(.bss) for test
+    testqueues.o(.data) refers to testqueues.o(.text) for notify
+    testsem.o(.text) refers to chsem.o(.text) for chSemObjectInit
+    testsem.o(.text) refers to test.o(.text) for test_emit_token
+    testsem.o(.text) refers to chthreads.o(.text) for chThdCreateStatic
+    testsem.o(.text) refers to chschd.o(.text) for chSchRescheduleS
+    testsem.o(.text) refers to testsem.o(.data) for .data
+    testsem.o(.text) refers to chschd.o(.bss) for ch
+    testsem.o(.text) refers to test.o(.constdata) for wa
+    testsem.o(.text) refers to test.o(.bss) for threads
+    testsem.o(.constdata) refers to testsem.o(.conststring) for .conststring
+    testsem.o(.constdata) refers to testsem.o(.text) for sem1_setup
+    testsem.o(.constdata) refers to testsem.o(.conststring) for .conststring
+    testsem.o(.constdata) refers to testsem.o(.text) for sem2_setup
+    testsem.o(.constdata) refers to testsem.o(.conststring) for .conststring
+    testsem.o(.constdata) refers to testsem.o(.text) for sem3_setup
+    testsem.o(.constdata) refers to testsem.o(.conststring) for .conststring
+    testsem.o(.constdata) refers to testsem.o(.text) for sem4_execute
+    testsem.o(.constdata) refers to testsem.o(.constdata) for testsem1
+    testsem.o(.constdata) refers to testsem.o(.constdata) for testsem2
+    testsem.o(.constdata) refers to testsem.o(.constdata) for testsem3
+    testsem.o(.constdata) refers to testsem.o(.constdata) for testsem4
+    testsys.o(.text) refers to chsys.o(.text) for chSysGetStatusAndLockX
+    testsys.o(.text) refers to chvt.o(.text) for chVTDoSetI
+    testsys.o(.text) refers to chthreads.o(.text) for chThdSleep
+    testsys.o(.text) refers to test.o(.text) for _test_assert
+    testsys.o(.constdata) refers to testsys.o(.conststring) for .conststring
+    testsys.o(.constdata) refers to testsys.o(.text) for sys1_execute
+    testsys.o(.constdata) refers to testsys.o(.conststring) for .conststring
+    testsys.o(.constdata) refers to testsys.o(.text) for sys2_execute
+    testsys.o(.constdata) refers to testsys.o(.conststring) for .conststring
+    testsys.o(.constdata) refers to testsys.o(.text) for sys3_execute
+    testsys.o(.constdata) refers to testsys.o(.constdata) for testsys1
+    testsys.o(.constdata) refers to testsys.o(.constdata) for testsys2
+    testsys.o(.constdata) refers to testsys.o(.constdata) for testsys3
+    testthd.o(.text) refers to test.o(.text) for test_emit_token
+    testthd.o(.text) refers to chthreads.o(.text) for chThdCreateStatic
+    testthd.o(.text) refers to chschd.o(.bss) for ch
+    testthd.o(.text) refers to test.o(.constdata) for wa
+    testthd.o(.text) refers to test.o(.bss) for threads
+    testthd.o(.constdata) refers to testthd.o(.conststring) for .conststring
+    testthd.o(.constdata) refers to testthd.o(.text) for thd1_execute
+    testthd.o(.constdata) refers to testthd.o(.conststring) for .conststring
+    testthd.o(.constdata) refers to testthd.o(.text) for thd2_execute
+    testthd.o(.constdata) refers to testthd.o(.conststring) for .conststring
+    testthd.o(.constdata) refers to testthd.o(.text) for thd3_execute
+    testthd.o(.constdata) refers to testthd.o(.conststring) for .conststring
+    testthd.o(.constdata) refers to testthd.o(.text) for thd4_execute
+    testthd.o(.constdata) refers to testthd.o(.constdata) for testthd1
+    testthd.o(.constdata) refers to testthd.o(.constdata) for testthd2
+    testthd.o(.constdata) refers to testthd.o(.constdata) for testthd3
+    testthd.o(.constdata) refers to testthd.o(.constdata) for testthd4
+    __2snprintf.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    __2snprintf.o(.text) refers to _sputc.o(.text) for _sputc
+    __2snprintf.o(.text) refers to _snputc.o(.text) for _snputc
+    noretval__2snprintf.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    noretval__2snprintf.o(.text) refers to _sputc.o(.text) for _sputc
+    noretval__2snprintf.o(.text) refers to _snputc.o(.text) for _snputc
+    __printf.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    _printf_str.o(.text) refers (Special) to _printf_char.o(.text) for _printf_cs_common
+    _printf_dec.o(.text) refers to _printf_intcommon.o(.text) for _printf_int_common
+    __printf_flags.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags.o(.text) refers to __printf_flags.o(.constdata) for .constdata
+    __printf_ss.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_ss.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_ss.o(.text) refers to __printf_flags_ss.o(.constdata) for .constdata
+    __printf_wp.o(.text) refers to __printf_wp.o(i._is_digit) for _is_digit
+    __printf_wp.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_wp.o(.text) refers to __printf_wp.o(i._is_digit) for _is_digit
+    __printf_flags_wp.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_wp.o(.text) refers to __printf_flags_wp.o(.constdata) for .constdata
+    __printf_ss_wp.o(.text) refers to __printf_wp.o(i._is_digit) for _is_digit
+    __printf_ss_wp.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_ss_wp.o(.text) refers to __printf_wp.o(i._is_digit) for _is_digit
+    __printf_flags_ss_wp.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    __printf_flags_ss_wp.o(.text) refers to __printf_flags_ss_wp.o(.constdata) for .constdata
+    _printf_s.o(.ARM.Collect$$_printf_percent$$00000014) refers (Weak) to _printf_char.o(.text) for _printf_string
+    _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) refers (Weak) to _printf_dec.o(.text) for _printf_int_dec
+    _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) refers (Special) to _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017) for _printf_percent_end
+    atoi.o(.text) refers to rt_errno_addr_intlibspace.o(.text) for __aeabi_errno_addr
+    atoi.o(.text) refers to strtol.o(.text) for strtol
+    rt_memcpy_v6.o(.text) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    rt_memclr.o(.text) refers to rt_memclr_w.o(.text) for _memset_w
+    __main.o(!!!main) refers to rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
+    rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
+    rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
+    rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to rtentry2.o(.ARM.Collect$$rtentry$$0000000C) for __rt_entry_postli_1
+    rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to rtentry2.o(.ARM.Collect$$rtentry$$00000009) for __rt_entry_postsh_1
+    rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to rtentry2.o(.ARM.Collect$$rtentry$$00000002) for __rt_entry_presh_1
+    rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to rtentry5.o(.ARM.Collect$$rtentry$$00000005) for __rt_entry_sh
+    rt_errno_addr.o(.text) refers to rt_errno_addr.o(.bss) for __aeabi_errno_addr_data
+    rt_errno_addr_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    _printf_char_common.o(.text) refers to __printf_wp.o(.text) for __printf
+    _printf_char.o(.text) refers (Weak) to _printf_str.o(.text) for _printf_str
+    strtol.o(.text) refers to rt_ctype_table.o(.text) for __rt_ctype_table
+    strtol.o(.text) refers to _strtoul.o(.text) for _strtoul
+    strtol.o(.text) refers to rt_errno_addr_intlibspace.o(.text) for __aeabi_errno_addr
+    libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
+    rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
+    rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
+    rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to main.o(.text) for main
+    rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to exit.o(.text) for exit
+    rtentry2.o(.ARM.exidx) refers to rtentry2.o(.ARM.Collect$$rtentry$$00000001) for .ARM.Collect$$rtentry$$00000001
+    rtentry2.o(.ARM.exidx) refers to rtentry2.o(.ARM.Collect$$rtentry$$00000008) for .ARM.Collect$$rtentry$$00000008
+    rtentry2.o(.ARM.exidx) refers to rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for .ARM.Collect$$rtentry$$0000000A
+    rtentry2.o(.ARM.exidx) refers to rtentry2.o(.ARM.Collect$$rtentry$$0000000B) for .ARM.Collect$$rtentry$$0000000B
+    rtentry2.o(.ARM.exidx) refers to rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for .ARM.Collect$$rtentry$$0000000D
+    rtentry4.o(.ARM.Collect$$rtentry$$00000004) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
+    rtentry4.o(.ARM.exidx) refers to rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
+    rtentry5.o(.ARM.Collect$$rtentry$$00000005) refers to rtentry5.o(.ARM.Collect$$rtentry$$00002716) for __lit__00000000
+    rtentry5.o(.ARM.Collect$$rtentry$$00002716) refers to cstartup.o(CSTACK) for __initial_sp
+    rtentry5.o(__vectab_stack_and_reset_sym_area) refers to cstartup.o(CSTACK) for __initial_sp
+    rtentry5.o(__vectab_stack_and_reset_sym_area) refers to __main.o(!!!main) for __main
+    rtentry5.o(.ARM.exidx) refers to rtentry5.o(.ARM.Collect$$rtentry$$00000005) for .ARM.Collect$$rtentry$$00000005
+    rtentry5.o(.ARM.exidx) refers to rtentry5.o(.ARM.Collect$$rtentry$$00002716) for .ARM.Collect$$rtentry$$00002716
+    rt_ctype_table.o(.text) refers to rt_locale_intlibspace.o(.text) for __rt_locale
+    rt_ctype_table.o(.text) refers to lc_ctype_c.o(locale$$code) for _get_lc_ctype
+    _strtoul.o(.text) refers to _chval.o(.text) for _chval
+    _strtoul.o(.text) refers to rt_errno_addr_intlibspace.o(.text) for __aeabi_errno_addr
+    sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
+    sys_stackheap_outer.o(.text) refers to cstartup.o(.text) for __user_initial_stackheap
+    rt_locale.o(.text) refers to rt_locale.o(.bss) for __rt_locale_data
+    rt_locale_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    lc_ctype_c.o(locale$$data) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000010) for __rt_lib_init_lc_ctype_2
+    lc_ctype_c.o(locale$$code) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000010) for __rt_lib_init_lc_ctype_2
+    lc_ctype_c.o(locale$$code) refers to strcmpv7m.o(.text) for strcmp
+    lc_ctype_c.o(locale$$code) refers to lc_ctype_c.o(locale$$data) for __lcctype_c_name
+    exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002C) for __rt_lib_init_alloca_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002A) for __rt_lib_init_argv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000019) for __rt_lib_init_atexit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001F) for __rt_lib_init_clock_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000030) for __rt_lib_init_cpp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002E) for __rt_lib_init_exceptions_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000001) for __rt_lib_init_fp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001D) for __rt_lib_init_fp_trap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000021) for __rt_lib_init_getenv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000008) for __rt_lib_init_heap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000F) for __rt_lib_init_lc_collate_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000011) for __rt_lib_init_lc_ctype_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000013) for __rt_lib_init_lc_monetary_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000015) for __rt_lib_init_lc_numeric_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000017) for __rt_lib_init_lc_time_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000C) for __rt_lib_init_rand_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000031) for __rt_lib_init_return
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001B) for __rt_lib_init_signal_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000023) for __rt_lib_init_stdio_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000A) for __rt_lib_init_user_alloc_1
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for .ARM.Collect$$rtexit$$00000000
+    libinit2.o(.ARM.Collect$$libinit$$00000001) refers to fpinit.o(x$fpl$fpinit) for _fp_init
+    libinit2.o(.ARM.Collect$$libinit$$0000000D) refers (Weak) to rt_locale_intlibspace.o(.text) for __rt_locale
+    libinit2.o(.ARM.Collect$$libinit$$0000000E) refers to libinit2.o(.ARM.Collect$$libinit$$0000000D) for .ARM.Collect$$libinit$$0000000D
+    libinit2.o(.ARM.Collect$$libinit$$00000010) refers to libinit2.o(.ARM.Collect$$libinit$$0000000D) for .ARM.Collect$$libinit$$0000000D
+    libinit2.o(.ARM.Collect$$libinit$$00000010) refers (Weak) to lc_ctype_c.o(locale$$code) for _get_lc_ctype
+    libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$0000000D) for .ARM.Collect$$libinit$$0000000D
+    libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$0000000D) for .ARM.Collect$$libinit$$0000000D
+    libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$0000000D) for .ARM.Collect$$libinit$$0000000D
+    libinit2.o(.ARM.Collect$$libinit$$00000024) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    libinit2.o(.ARM.Collect$$libinit$$00000025) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    rtexit2.o(.ARM.Collect$$rtexit$$00000003) refers to libshutdown.o(.ARM.Collect$$libshutdown$$00000000) for __rt_lib_shutdown
+    rtexit2.o(.ARM.Collect$$rtexit$$00000004) refers to sys_exit.o(.text) for _sys_exit
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000001) for .ARM.Collect$$rtexit$$00000001
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for .ARM.Collect$$rtexit$$00000003
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for .ARM.Collect$$rtexit$$00000004
+    argv_veneer.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
+    sys_exit.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    _get_argv_nomalloc.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
+    _get_argv_nomalloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv_nomalloc.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000006) for __rt_lib_shutdown_fp_trap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000E) for __rt_lib_shutdown_heap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F) for __rt_lib_shutdown_return
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000009) for __rt_lib_shutdown_signal_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000003) for __rt_lib_shutdown_stdio_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000B) for __rt_lib_shutdown_user_alloc_1
+    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    rt_raise.o(.text) refers to __raise.o(.text) for __raise
+    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
+    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
+    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_abrt_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_fpe_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_stak_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_pvfn_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_cppl_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_segv_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_other.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing board.o(.rev16_text), (4 bytes).
+    Removing board.o(.revsh_text), (4 bytes).
+    Removing chcore.o(.rev16_text), (4 bytes).
+    Removing chcore.o(.revsh_text), (4 bytes).
+    Removing chcore_v7m.o(.rev16_text), (4 bytes).
+    Removing chcore_v7m.o(.revsh_text), (4 bytes).
+    Removing chvt.o(.rev16_text), (4 bytes).
+    Removing chvt.o(.revsh_text), (4 bytes).
+    Removing chvt.o(.constdata), (11 bytes).
+    Removing chvt.o(.constdata), (13 bytes).
+    Removing chcond.o(.rev16_text), (4 bytes).
+    Removing chcond.o(.revsh_text), (4 bytes).
+    Removing chcond.o(.constdata), (12 bytes).
+    Removing chcond.o(.constdata), (17 bytes).
+    Removing chcond.o(.constdata), (13 bytes).
+    Removing chcond.o(.constdata), (14 bytes).
+    Removing chcond.o(.constdata), (17 bytes).
+    Removing chcond.o(.constdata), (12 bytes).
+    Removing chcond.o(.constdata), (19 bytes).
+    Removing chdebug.o(.rev16_text), (4 bytes).
+    Removing chdebug.o(.revsh_text), (4 bytes).
+    Removing chdynamic.o(.rev16_text), (4 bytes).
+    Removing chdynamic.o(.revsh_text), (4 bytes).
+    Removing chdynamic.o(.constdata), (12 bytes).
+    Removing chdynamic.o(.constdata), (12 bytes).
+    Removing chdynamic.o(.constdata), (13 bytes).
+    Removing chdynamic.o(.constdata), (26 bytes).
+    Removing chevents.o(.rev16_text), (4 bytes).
+    Removing chevents.o(.revsh_text), (4 bytes).
+    Removing chevents.o(.constdata), (12 bytes).
+    Removing chevents.o(.constdata), (27 bytes).
+    Removing chevents.o(.constdata), (16 bytes).
+    Removing chevents.o(.constdata), (21 bytes).
+    Removing chevents.o(.constdata), (12 bytes).
+    Removing chevents.o(.constdata), (13 bytes).
+    Removing chevents.o(.constdata), (14 bytes).
+    Removing chheap.o(.rev16_text), (4 bytes).
+    Removing chheap.o(.revsh_text), (4 bytes).
+    Removing chheap.o(.constdata), (17 bytes).
+    Removing chheap.o(.constdata), (11 bytes).
+    Removing chmboxes.o(.rev16_text), (4 bytes).
+    Removing chmboxes.o(.revsh_text), (4 bytes).
+    Removing chmboxes.o(.constdata), (12 bytes).
+    Removing chmboxes.o(.constdata), (15 bytes).
+    Removing chmboxes.o(.constdata), (11 bytes).
+    Removing chmboxes.o(.constdata), (10 bytes).
+    Removing chmboxes.o(.constdata), (10 bytes).
+    Removing chmboxes.o(.constdata), (15 bytes).
+    Removing chmboxes.o(.constdata), (15 bytes).
+    Removing chmboxes.o(.constdata), (11 bytes).
+    Removing chmboxes.o(.constdata), (11 bytes).
+    Removing chmemcore.o(.rev16_text), (4 bytes).
+    Removing chmemcore.o(.revsh_text), (4 bytes).
+    Removing chmemcore.o(.constdata), (12 bytes).
+    Removing chmempools.o(.rev16_text), (4 bytes).
+    Removing chmempools.o(.revsh_text), (4 bytes).
+    Removing chmempools.o(.constdata), (12 bytes).
+    Removing chmempools.o(.constdata), (17 bytes).
+    Removing chmempools.o(.constdata), (16 bytes).
+    Removing chmempools.o(.constdata), (13 bytes).
+    Removing chmempools.o(.constdata), (12 bytes).
+    Removing chmsg.o(.rev16_text), (4 bytes).
+    Removing chmsg.o(.revsh_text), (4 bytes).
+    Removing chmsg.o(.constdata), (12 bytes).
+    Removing chmsg.o(.constdata), (10 bytes).
+    Removing chmsg.o(.constdata), (13 bytes).
+    Removing chmtx.o(.rev16_text), (4 bytes).
+    Removing chmtx.o(.revsh_text), (4 bytes).
+    Removing chmtx.o(.constdata), (12 bytes).
+    Removing chmtx.o(.constdata), (16 bytes).
+    Removing chmtx.o(.constdata), (11 bytes).
+    Removing chmtx.o(.constdata), (14 bytes).
+    Removing chmtx.o(.constdata), (12 bytes).
+    Removing chmtx.o(.constdata), (13 bytes).
+    Removing chqueues.o(.rev16_text), (4 bytes).
+    Removing chqueues.o(.revsh_text), (4 bytes).
+    Removing chqueues.o(.constdata), (12 bytes).
+    Removing chqueues.o(.constdata), (16 bytes).
+    Removing chqueues.o(.constdata), (17 bytes).
+    Removing chregistry.o(.rev16_text), (4 bytes).
+    Removing chregistry.o(.revsh_text), (4 bytes).
+    Removing chregistry.o(.constdata), (12 bytes).
+    Removing chregistry.o(.constdata), (16 bytes).
+    Removing chschd.o(.rev16_text), (4 bytes).
+    Removing chschd.o(.revsh_text), (4 bytes).
+    Removing chschd.o(.constdata), (12 bytes).
+    Removing chsem.o(.rev16_text), (4 bytes).
+    Removing chsem.o(.revsh_text), (4 bytes).
+    Removing chsem.o(.constdata), (12 bytes).
+    Removing chsem.o(.constdata), (16 bytes).
+    Removing chsem.o(.constdata), (12 bytes).
+    Removing chsem.o(.constdata), (11 bytes).
+    Removing chsem.o(.constdata), (18 bytes).
+    Removing chsem.o(.constdata), (12 bytes).
+    Removing chsem.o(.constdata), (13 bytes).
+    Removing chsem.o(.constdata), (17 bytes).
+    Removing chsem.o(.constdata), (16 bytes).
+    Removing chstats.o(.rev16_text), (4 bytes).
+    Removing chstats.o(.revsh_text), (4 bytes).
+    Removing chsys.o(.rev16_text), (4 bytes).
+    Removing chsys.o(.revsh_text), (4 bytes).
+    Removing chsys.o(.constdata), (12 bytes).
+    Removing chsys.o(.constdata), (12 bytes).
+    Removing chthreads.o(.rev16_text), (4 bytes).
+    Removing chthreads.o(.revsh_text), (4 bytes).
+    Removing chthreads.o(.constdata), (12 bytes).
+    Removing chthreads.o(.constdata), (12 bytes).
+    Removing chthreads.o(.constdata), (12 bytes).
+    Removing chthreads.o(.constdata), (20 bytes).
+    Removing chthreads.o(.constdata), (13 bytes).
+    Removing chthreads.o(.constdata), (17 bytes).
+    Removing chthreads.o(.constdata), (11 bytes).
+    Removing chthreads.o(.constdata), (10 bytes).
+    Removing chthreads.o(.constdata), (14 bytes).
+    Removing chthreads.o(.constdata), (21 bytes).
+    Removing chthreads.o(.constdata), (13 bytes).
+    Removing chthreads.o(.constdata), (13 bytes).
+    Removing chtm.o(.rev16_text), (4 bytes).
+    Removing chtm.o(.revsh_text), (4 bytes).
+    Removing serial.o(.rev16_text), (4 bytes).
+    Removing serial.o(.revsh_text), (4 bytes).
+    Removing serial.o(.constdata), (12 bytes).
+    Removing serial.o(.constdata), (8 bytes).
+    Removing serial.o(.constdata), (7 bytes).
+    Removing serial.o(.constdata), (16 bytes).
+    Removing serial.o(.constdata), (15 bytes).
+    Removing gpt.o(.rev16_text), (4 bytes).
+    Removing gpt.o(.revsh_text), (4 bytes).
+    Removing gpt.o(.constdata), (12 bytes).
+    Removing gpt.o(.constdata), (9 bytes).
+    Removing gpt.o(.constdata), (8 bytes).
+    Removing gpt.o(.constdata), (18 bytes).
+    Removing gpt.o(.constdata), (20 bytes).
+    Removing gpt.o(.constdata), (17 bytes).
+    Removing gpt.o(.constdata), (14 bytes).
+    Removing gpt.o(.constdata), (15 bytes).
+    Removing hal.o(.rev16_text), (4 bytes).
+    Removing hal.o(.revsh_text), (4 bytes).
+    Removing st.o(.rev16_text), (4 bytes).
+    Removing st.o(.revsh_text), (4 bytes).
+    Removing st.o(.constdata), (13 bytes).
+    Removing st.o(.constdata), (11 bytes).
+    Removing st.o(.constdata), (11 bytes).
+    Removing hal_lld.o(.rev16_text), (4 bytes).
+    Removing hal_lld.o(.revsh_text), (4 bytes).
+    Removing hal_lld.o(.data), (4 bytes).
+    Removing pal_lld.o(.rev16_text), (4 bytes).
+    Removing pal_lld.o(.revsh_text), (4 bytes).
+    Removing gpt_lld.o(.rev16_text), (4 bytes).
+    Removing gpt_lld.o(.revsh_text), (4 bytes).
+    Removing gpt_lld.o(.constdata), (14 bytes).
+    Removing serial_lld.o(.rev16_text), (4 bytes).
+    Removing serial_lld.o(.revsh_text), (4 bytes).
+    Removing st_lld.o(.rev16_text), (4 bytes).
+    Removing st_lld.o(.revsh_text), (4 bytes).
+    Removing nvic.o(.rev16_text), (4 bytes).
+    Removing nvic.o(.revsh_text), (4 bytes).
+    Removing nvic.o(.constdata), (29 bytes).
+    Removing irq_storm.o(.rev16_text), (4 bytes).
+    Removing irq_storm.o(.revsh_text), (4 bytes).
+    Removing irq_storm.o(.text), (1504 bytes).
+    Removing irq_storm.o(.bss), (2096 bytes).
+    Removing irq_storm.o(.data), (16 bytes).
+    Removing chprintf.o(.rev16_text), (4 bytes).
+    Removing chprintf.o(.revsh_text), (4 bytes).
+    Removing memstreams.o(.rev16_text), (4 bytes).
+    Removing memstreams.o(.revsh_text), (4 bytes).
+    Removing main.o(.rev16_text), (4 bytes).
+    Removing main.o(.revsh_text), (4 bytes).
+    Removing mqtt.o(.rev16_text), (4 bytes).
+    Removing mqtt.o(.revsh_text), (4 bytes).
+    Removing mqttclient.o(.rev16_text), (4 bytes).
+    Removing mqttclient.o(.revsh_text), (4 bytes).
+    Removing mqttconnectserver.o(.text), (460 bytes).
+    Removing mqttformat.o(.text), (1500 bytes).
+    Removing mqttformat.o(.constdata), (239 bytes).
+    Removing mqttformat.o(.conststring), (128 bytes).
+    Removing mqttformat.o(.data), (60 bytes).
+    Removing mqttlwip.o(.rev16_text), (4 bytes).
+    Removing mqttlwip.o(.revsh_text), (4 bytes).
+    Removing mqttsubscribeserver.o(.text), (250 bytes).
+    Removing mqttunsubscribeserver.o(.text), (196 bytes).
+    Removing web.o(.rev16_text), (4 bytes).
+    Removing web.o(.revsh_text), (4 bytes).
+    Removing api_lib.o(.rev16_text), (4 bytes).
+    Removing api_lib.o(.revsh_text), (4 bytes).
+    Removing api_msg.o(.rev16_text), (4 bytes).
+    Removing api_msg.o(.revsh_text), (4 bytes).
+    Removing netdb.o(.rev16_text), (4 bytes).
+    Removing netdb.o(.revsh_text), (4 bytes).
+    Removing netdb.o(.text), (484 bytes).
+    Removing netdb.o(.bss), (20 bytes).
+    Removing netdb.o(.data), (16 bytes).
+    Removing sockets.o(.rev16_text), (4 bytes).
+    Removing sockets.o(.revsh_text), (4 bytes).
+    Removing tcpip.o(.rev16_text), (4 bytes).
+    Removing tcpip.o(.revsh_text), (4 bytes).
+    Removing pbuf.o(.rev16_text), (4 bytes).
+    Removing pbuf.o(.revsh_text), (4 bytes).
+    Removing dhcp.o(.rev16_text), (4 bytes).
+    Removing dhcp.o(.revsh_text), (4 bytes).
+    Removing init.o(.rev16_text), (4 bytes).
+    Removing init.o(.revsh_text), (4 bytes).
+    Removing mem.o(.rev16_text), (4 bytes).
+    Removing mem.o(.revsh_text), (4 bytes).
+    Removing memp.o(.rev16_text), (4 bytes).
+    Removing memp.o(.revsh_text), (4 bytes).
+    Removing netif.o(.rev16_text), (4 bytes).
+    Removing netif.o(.revsh_text), (4 bytes).
+    Removing sys.o(.rev16_text), (4 bytes).
+    Removing sys.o(.revsh_text), (4 bytes).
+    Removing tcp.o(.rev16_text), (4 bytes).
+    Removing tcp.o(.revsh_text), (4 bytes).
+    Removing tcp_in.o(.rev16_text), (4 bytes).
+    Removing tcp_in.o(.revsh_text), (4 bytes).
+    Removing tcp_in.o(.text), (3504 bytes).
+    Removing tcp_in.o(.bss), (20 bytes).
+    Removing tcp_out.o(.rev16_text), (4 bytes).
+    Removing tcp_out.o(.revsh_text), (4 bytes).
+    Removing sys_arch.o(.rev16_text), (4 bytes).
+    Removing sys_arch.o(.revsh_text), (4 bytes).
+    Removing sys_arch.o(.constdata), (12 bytes).
+    Removing sys_arch.o(.constdata), (12 bytes).
+    Removing test.o(.rev16_text), (4 bytes).
+    Removing test.o(.revsh_text), (4 bytes).
+    Removing test.o(.constdata), (12 bytes).
+    Removing testbmk.o(.rev16_text), (4 bytes).
+    Removing testbmk.o(.revsh_text), (4 bytes).
+    Removing testbmk.o(.constdata), (12 bytes).
+    Removing testdyn.o(.rev16_text), (4 bytes).
+    Removing testdyn.o(.revsh_text), (4 bytes).
+    Removing testevt.o(.rev16_text), (4 bytes).
+    Removing testevt.o(.revsh_text), (4 bytes).
+    Removing testevt.o(.constdata), (12 bytes).
+    Removing testheap.o(.rev16_text), (4 bytes).
+    Removing testheap.o(.revsh_text), (4 bytes).
+    Removing testmbox.o(.rev16_text), (4 bytes).
+    Removing testmbox.o(.revsh_text), (4 bytes).
+    Removing testmbox.o(.constdata), (12 bytes).
+    Removing testmsg.o(.rev16_text), (4 bytes).
+    Removing testmsg.o(.revsh_text), (4 bytes).
+    Removing testmtx.o(.rev16_text), (4 bytes).
+    Removing testmtx.o(.revsh_text), (4 bytes).
+    Removing testmtx.o(.constdata), (12 bytes).
+    Removing testpools.o(.rev16_text), (4 bytes).
+    Removing testpools.o(.revsh_text), (4 bytes).
+    Removing testqueues.o(.rev16_text), (4 bytes).
+    Removing testqueues.o(.revsh_text), (4 bytes).
+    Removing testqueues.o(.constdata), (12 bytes).
+    Removing testsem.o(.rev16_text), (4 bytes).
+    Removing testsem.o(.revsh_text), (4 bytes).
+    Removing testsem.o(.constdata), (12 bytes).
+    Removing testsys.o(.rev16_text), (4 bytes).
+    Removing testsys.o(.revsh_text), (4 bytes).
+    Removing testsys.o(.constdata), (12 bytes).
+    Removing testthd.o(.rev16_text), (4 bytes).
+    Removing testthd.o(.revsh_text), (4 bytes).
+    Removing testthd.o(.constdata), (12 bytes).
+
+258 unused section(s) (total 12473 bytes) removed from the image.
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x00000000
+
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000f71c, Max: 0x00100000, ABSOLUTE)
+
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000f558, Max: 0x00100000, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x08000000   0x000001c0   Data   RO          283    RESET               vectors.o
+    0x080001c0   0x00000008   Code   RO         3754  * !!!main             c_w.l(__main.o)
+    0x080001c8   0x00000002   Code   RO         3823    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x080001ca   0x00000004   Code   RO         3826    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3830    .ARM.Collect$$libinit$$00000008  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3832    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3834    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3837    .ARM.Collect$$libinit$$0000000F  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3839    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3841    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3843    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3845    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3847    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3849    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3851    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3853    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3855    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3857    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3861    .ARM.Collect$$libinit$$0000002A  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3863    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3865    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x080001ce   0x00000000   Code   RO         3867    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x080001ce   0x00000002   Code   RO         3868    .ARM.Collect$$libinit$$00000031  c_w.l(libinit2.o)
+    0x080001d0   0x00000002   Code   RO         3888    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x080001d2   0x00000000   Code   RO         3902    .ARM.Collect$$libshutdown$$00000003  c_w.l(libshutdown2.o)
+    0x080001d2   0x00000000   Code   RO         3905    .ARM.Collect$$libshutdown$$00000006  c_w.l(libshutdown2.o)
+    0x080001d2   0x00000000   Code   RO         3908    .ARM.Collect$$libshutdown$$00000009  c_w.l(libshutdown2.o)
+    0x080001d2   0x00000000   Code   RO         3910    .ARM.Collect$$libshutdown$$0000000B  c_w.l(libshutdown2.o)
+    0x080001d2   0x00000000   Code   RO         3913    .ARM.Collect$$libshutdown$$0000000E  c_w.l(libshutdown2.o)
+    0x080001d2   0x00000002   Code   RO         3914    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x080001d4   0x00000000   Code   RO         3756    .ARM.Collect$$rtentry$$00000000  c_w.l(rtentry.o)
+    0x080001d4   0x00000000   Code   RO         3779    .ARM.Collect$$rtentry$$00000002  c_w.l(rtentry2.o)
+    0x080001d4   0x00000004   Code   RO         3793    .ARM.Collect$$rtentry$$00000005  c_w.l(rtentry5.o)
+    0x080001d8   0x00000000   Code   RO         3781    .ARM.Collect$$rtentry$$00000009  c_w.l(rtentry2.o)
+    0x080001d8   0x00000004   Code   RO         3782    .ARM.Collect$$rtentry$$0000000A  c_w.l(rtentry2.o)
+    0x080001dc   0x00000000   Code   RO         3784    .ARM.Collect$$rtentry$$0000000C  c_w.l(rtentry2.o)
+    0x080001dc   0x00000008   Code   RO         3785    .ARM.Collect$$rtentry$$0000000D  c_w.l(rtentry2.o)
+    0x080001e4   0x00000004   Code   RO         3794    .ARM.Collect$$rtentry$$00002716  c_w.l(rtentry5.o)
+    0x080001e8   0x00000002   Code   RO         3824    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x080001ea   0x00000000   Code   RO         3870    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x080001ea   0x00000004   Code   RO         3871    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x080001ee   0x00000006   Code   RO         3872    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x080001f4   0x00000006   Code   RO            3    .text               board.o
+    0x080001fa   0x00000002   PAD
+    0x080001fc   0x00000002   Code   RO          284    .text               vectors.o
+    0x080001fe   0x00000002   PAD
+    0x08000200   0x00000050   Code   RO          291    .text               cstartup.o
+    0x08000250   0x00000078   Code   RO          311    .text               chcore_v7m.o
+    0x080002c8   0x0000002e   Code   RO          332    .text               chcoreasm_v7m.o
+    0x080002f6   0x00000002   PAD
+    0x080002f8   0x00000114   Code   RO          338    .text               chvt.o
+    0x0800040c   0x000001e0   Code   RO          363    .text               chcond.o
+    0x080005ec   0x000000e8   Code   RO          461    .text               chdynamic.o
+    0x080006d4   0x00000358   Code   RO          488    .text               chevents.o
+    0x08000a2c   0x00000164   Code   RO          516    .text               chheap.o
+    0x08000b90   0x00000284   Code   RO          540    .text               chmboxes.o
+    0x08000e14   0x0000006c   Code   RO          623    .text               chmemcore.o
+    0x08000e80   0x00000092   Code   RO          647    .text               chmempools.o
+    0x08000f12   0x00000002   PAD
+    0x08000f14   0x00000084   Code   RO          673    .text               chmsg.o
+    0x08000f98   0x00000224   Code   RO          749    .text               chmtx.o
+    0x080011bc   0x00000246   Code   RO          829    .text               chqueues.o
+    0x08001402   0x00000002   PAD
+    0x08001404   0x00000044   Code   RO          905    .text               chregistry.o
+    0x08001448   0x0000028c   Code   RO          933    .text               chschd.o
+    0x080016d4   0x0000021c   Code   RO         1010    .text               chsem.o
+    0x080018f0   0x0000021c   Code   RO         1107    .text               chsys.o
+    0x08001b0c   0x00000338   Code   RO         1196    .text               chthreads.o
+    0x08001e44   0x000000a8   Code   RO         1282    .text               chtm.o
+    0x08001eec   0x00000114   Code   RO         1362    .text               serial.o
+    0x08002000   0x000000d0   Code   RO         1491    .text               gpt.o
+    0x080020d0   0x00000024   Code   RO         1533    .text               hal.o
+    0x080020f4   0x0000002e   Code   RO         1553    .text               st.o
+    0x08002122   0x00000002   PAD
+    0x08002124   0x00000158   Code   RO         1579    .text               hal_lld.o
+    0x0800227c   0x0000023c   Code   RO         1605    .text               pal_lld.o
+    0x080024b8   0x000001e0   Code   RO         1625    .text               gpt_lld.o
+    0x08002698   0x000001d8   Code   RO         1656    .text               serial_lld.o
+    0x08002870   0x0000006c   Code   RO         1692    .text               st_lld.o
+    0x080028dc   0x0000006c   Code   RO         1712    .text               nvic.o
+    0x08002948   0x0000030c   Code   RO         1809    .text               chprintf.o
+    0x08002c54   0x000000a0   Code   RO         1835    .text               memstreams.o
+    0x08002cf4   0x00000130   Code   RO         1897    .text               main.o
+    0x08002e24   0x00000290   Code   RO         1957    .text               mqtt.o
+    0x080030b4   0x000008bc   Code   RO         2043    .text               mqttclient.o
+    0x08003970   0x00000308   Code   RO         2075    .text               mqttconnectclient.o
+    0x08003c78   0x000000da   Code   RO         2101    .text               mqttdeserializepublish.o
+    0x08003d52   0x00000002   PAD
+    0x08003d54   0x000001a2   Code   RO         2137    .text               mqttlwip.o
+    0x08003ef6   0x00000002   PAD
+    0x08003ef8   0x0000033c   Code   RO         2155    .text               mqttpacket.o
+    0x08004234   0x000001d4   Code   RO         2170    .text               mqttserializepublish.o
+    0x08004408   0x0000017a   Code   RO         2183    .text               mqttsubscribeclient.o
+    0x08004582   0x00000002   PAD
+    0x08004584   0x0000010e   Code   RO         2208    .text               mqttunsubscribeclient.o
+    0x08004692   0x00000002   PAD
+    0x08004694   0x000000f8   Code   RO         2235    .text               web.o
+    0x0800478c   0x00000380   Code   RO         2262    .text               api_lib.o
+    0x08004b0c   0x00000a68   Code   RO         2398    .text               api_msg.o
+    0x08005574   0x0000013e   Code   RO         2460    .text               netbuf.o
+    0x080056b2   0x00000002   PAD
+    0x080056b4   0x00000f88   Code   RO         2532    .text               sockets.o
+    0x0800663c   0x00000414   Code   RO         2557    .text               tcpip.o
+    0x08006a50   0x0000050a   Code   RO         2622    .text               pbuf.o
+    0x08006f5a   0x00000002   PAD
+    0x08006f5c   0x00001240   Code   RO         2655    .text               dhcp.o
+    0x0800819c   0x000005e0   Code   RO         2697    .text               dns.o
+    0x0800877c   0x0000001e   Code   RO         2737    .text               init.o
+    0x0800879a   0x00000002   PAD
+    0x0800879c   0x00000298   Code   RO         2780    .text               mem.o
+    0x08008a34   0x00000094   Code   RO         2807    .text               memp.o
+    0x08008ac8   0x00000280   Code   RO         2863    .text               netif.o
+    0x08008d48   0x00000200   Code   RO         2895    .text               raw.o
+    0x08008f48   0x000002d0   Code   RO         2927    .text               sys.o
+    0x08009218   0x00000bdc   Code   RO         2957    .text               tcp.o
+    0x08009df4   0x00000a4a   Code   RO         3022    .text               tcp_out.o
+    0x0800a83e   0x00000002   PAD
+    0x0800a840   0x00000488   Code   RO         3045    .text               udp.o
+    0x0800acc8   0x000001a0   Code   RO         3080    .text               sys_arch.o
+    0x0800ae68   0x000007e0   Code   RO         3112    .text               test.o
+    0x0800b648   0x00000900   Code   RO         3194    .text               testbmk.o
+    0x0800bf48   0x000003c8   Code   RO         3251    .text               testdyn.o
+    0x0800c310   0x00000492   Code   RO         3280    .text               testevt.o
+    0x0800c7a2   0x00000002   PAD
+    0x0800c7a4   0x00000278   Code   RO         3314    .text               testheap.o
+    0x0800ca1c   0x000005bc   Code   RO         3339    .text               testmbox.o
+    0x0800cfd8   0x00000094   Code   RO         3368    .text               testmsg.o
+    0x0800d06c   0x000006e4   Code   RO         3392    .text               testmtx.o
+    0x0800d750   0x000000d8   Code   RO         3428    .text               testpools.o
+    0x0800d828   0x000004bc   Code   RO         3453    .text               testqueues.o
+    0x0800dce4   0x000004ac   Code   RO         3484    .text               testsem.o
+    0x0800e190   0x0000014c   Code   RO         3573    .text               testsys.o
+    0x0800e2dc   0x00000368   Code   RO         3668    .text               testthd.o
+    0x0800e644   0x00000048   Code   RO         3736    .text               c_w.l(strcpy.o)
+    0x0800e68c   0x0000003e   Code   RO         3738    .text               c_w.l(strlen.o)
+    0x0800e6ca   0x00000096   Code   RO         3740    .text               c_w.l(strncmp.o)
+    0x0800e760   0x0000008a   Code   RO         3742    .text               c_w.l(rt_memcpy_v6.o)
+    0x0800e7ea   0x00000064   Code   RO         3744    .text               c_w.l(rt_memcpy_w.o)
+    0x0800e84e   0x00000044   Code   RO         3746    .text               c_w.l(rt_memclr.o)
+    0x0800e892   0x0000004e   Code   RO         3748    .text               c_w.l(rt_memclr_w.o)
+    0x0800e8e0   0x00000080   Code   RO         3750    .text               c_w.l(strcmpv7m.o)
+    0x0800e960   0x00000006   Code   RO         3752    .text               c_w.l(heapauxi.o)
+    0x0800e966   0x0000000c   Code   RO         3816    .text               c_w.l(exit.o)
+    0x0800e972   0x00000002   PAD
+    0x0800e974   0x0000000c   Code   RO         3880    .text               c_w.l(sys_exit.o)
+    0x0800e980   0x00000002   Code   RO         3891    .text               c_w.l(use_no_semi.o)
+    0x0800e982   0x00000000   Code   RO         3893    .text               c_w.l(indicate_semi.o)
+    0x0800e982   0x0000000a   Code   RO         3878    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x0800e98c   0x000000fc   Data   RO            4    .constdata          board.o
+    0x0800ea88   0x00000016   Data   RO          906    .constdata          chregistry.o
+    0x0800ea9e   0x00000002   PAD
+    0x0800eaa0   0x00000020   Data   RO         1363    .constdata          serial.o
+    0x0800eac0   0x0000000c   Data   RO         1658    .constdata          serial_lld.o
+    0x0800eacc   0x00000010   Data   RO         1836    .constdata          memstreams.o
+    0x0800eadc   0x00000058   Data   RO         1959    .constdata          mqtt.o
+    0x0800eb34   0x00000058   Data   RO         2044    .constdata          mqttclient.o
+    0x0800eb8c   0x000000b3   Data   RO         2237    .constdata          web.o
+    0x0800ec3f   0x00000001   PAD
+    0x0800ec40   0x0000003c   Data   RO         2534    .constdata          sockets.o
+    0x0800ec7c   0x00000038   Data   RO         2809    .constdata          memp.o
+    0x0800ecb4   0x00000014   Data   RO         2958    .constdata          tcp.o
+    0x0800ecc8   0x00000014   Data   RO         3115    .constdata          test.o
+    0x0800ecdc   0x00000010   Data   RO         3196    .constdata          testbmk.o
+    0x0800ecec   0x00000010   Data   RO         3197    .constdata          testbmk.o
+    0x0800ecfc   0x00000010   Data   RO         3198    .constdata          testbmk.o
+    0x0800ed0c   0x00000010   Data   RO         3199    .constdata          testbmk.o
+    0x0800ed1c   0x00000010   Data   RO         3200    .constdata          testbmk.o
+    0x0800ed2c   0x00000010   Data   RO         3201    .constdata          testbmk.o
+    0x0800ed3c   0x00000010   Data   RO         3202    .constdata          testbmk.o
+    0x0800ed4c   0x00000010   Data   RO         3203    .constdata          testbmk.o
+    0x0800ed5c   0x00000010   Data   RO         3204    .constdata          testbmk.o
+    0x0800ed6c   0x00000010   Data   RO         3205    .constdata          testbmk.o
+    0x0800ed7c   0x00000010   Data   RO         3206    .constdata          testbmk.o
+    0x0800ed8c   0x00000010   Data   RO         3207    .constdata          testbmk.o
+    0x0800ed9c   0x00000010   Data   RO         3208    .constdata          testbmk.o
+    0x0800edac   0x00000038   Data   RO         3209    .constdata          testbmk.o
+    0x0800ede4   0x00000010   Data   RO         3253    .constdata          testdyn.o
+    0x0800edf4   0x00000010   Data   RO         3254    .constdata          testdyn.o
+    0x0800ee04   0x00000010   Data   RO         3255    .constdata          testdyn.o
+    0x0800ee14   0x00000010   Data   RO         3256    .constdata          testdyn.o
+    0x0800ee24   0x0000000c   Data   RO         3281    .constdata          testevt.o
+    0x0800ee30   0x00000010   Data   RO         3282    .constdata          testevt.o
+    0x0800ee40   0x00000010   Data   RO         3283    .constdata          testevt.o
+    0x0800ee50   0x00000010   Data   RO         3284    .constdata          testevt.o
+    0x0800ee60   0x00000010   Data   RO         3285    .constdata          testevt.o
+    0x0800ee70   0x00000010   Data   RO         3316    .constdata          testheap.o
+    0x0800ee80   0x00000008   Data   RO         3317    .constdata          testheap.o
+    0x0800ee88   0x00000010   Data   RO         3340    .constdata          testmbox.o
+    0x0800ee98   0x00000008   Data   RO         3341    .constdata          testmbox.o
+    0x0800eea0   0x00000010   Data   RO         3369    .constdata          testmsg.o
+    0x0800eeb0   0x00000008   Data   RO         3370    .constdata          testmsg.o
+    0x0800eeb8   0x00000010   Data   RO         3393    .constdata          testmtx.o
+    0x0800eec8   0x00000010   Data   RO         3394    .constdata          testmtx.o
+    0x0800eed8   0x00000010   Data   RO         3395    .constdata          testmtx.o
+    0x0800eee8   0x00000010   Data   RO         3396    .constdata          testmtx.o
+    0x0800eef8   0x00000010   Data   RO         3397    .constdata          testmtx.o
+    0x0800ef08   0x00000010   Data   RO         3398    .constdata          testmtx.o
+    0x0800ef18   0x0000001c   Data   RO         3399    .constdata          testmtx.o
+    0x0800ef34   0x00000010   Data   RO         3429    .constdata          testpools.o
+    0x0800ef44   0x00000008   Data   RO         3430    .constdata          testpools.o
+    0x0800ef4c   0x00000010   Data   RO         3454    .constdata          testqueues.o
+    0x0800ef5c   0x00000010   Data   RO         3455    .constdata          testqueues.o
+    0x0800ef6c   0x0000000c   Data   RO         3456    .constdata          testqueues.o
+    0x0800ef78   0x00000010   Data   RO         3485    .constdata          testsem.o
+    0x0800ef88   0x00000010   Data   RO         3486    .constdata          testsem.o
+    0x0800ef98   0x00000010   Data   RO         3487    .constdata          testsem.o
+    0x0800efa8   0x00000010   Data   RO         3488    .constdata          testsem.o
+    0x0800efb8   0x00000014   Data   RO         3489    .constdata          testsem.o
+    0x0800efcc   0x00000010   Data   RO         3574    .constdata          testsys.o
+    0x0800efdc   0x00000010   Data   RO         3575    .constdata          testsys.o
+    0x0800efec   0x00000010   Data   RO         3576    .constdata          testsys.o
+    0x0800effc   0x00000010   Data   RO         3577    .constdata          testsys.o
+    0x0800f00c   0x00000010   Data   RO         3669    .constdata          testthd.o
+    0x0800f01c   0x00000010   Data   RO         3670    .constdata          testthd.o
+    0x0800f02c   0x00000010   Data   RO         3671    .constdata          testthd.o
+    0x0800f03c   0x00000010   Data   RO         3672    .constdata          testthd.o
+    0x0800f04c   0x00000014   Data   RO         3673    .constdata          testthd.o
+    0x0800f060   0x00000068   Data   RO         2959    .conststring        tcp.o
+    0x0800f0c8   0x00000017   Data   RO         3211    .conststring        testbmk.o
+    0x0800f0df   0x00000017   Data   RO         3212    .conststring        testbmk.o
+    0x0800f0f6   0x00000017   Data   RO         3213    .conststring        testbmk.o
+    0x0800f10d   0x0000001a   Data   RO         3214    .conststring        testbmk.o
+    0x0800f127   0x0000001f   Data   RO         3215    .conststring        testbmk.o
+    0x0800f146   0x00000020   Data   RO         3216    .conststring        testbmk.o
+    0x0800f166   0x00000026   Data   RO         3217    .conststring        testbmk.o
+    0x0800f18c   0x00000029   Data   RO         3218    .conststring        testbmk.o
+    0x0800f1b5   0x00000021   Data   RO         3219    .conststring        testbmk.o
+    0x0800f1d6   0x00000024   Data   RO         3220    .conststring        testbmk.o
+    0x0800f1fa   0x00000022   Data   RO         3221    .conststring        testbmk.o
+    0x0800f21c   0x0000001f   Data   RO         3222    .conststring        testbmk.o
+    0x0800f23b   0x00000019   Data   RO         3223    .conststring        testbmk.o
+    0x0800f254   0x00000029   Data   RO         3257    .conststring        testdyn.o
+    0x0800f27d   0x00000030   Data   RO         3258    .conststring        testdyn.o
+    0x0800f2ad   0x00000026   Data   RO         3259    .conststring        testdyn.o
+    0x0800f2d3   0x00000022   Data   RO         3287    .conststring        testevt.o
+    0x0800f2f5   0x0000001b   Data   RO         3288    .conststring        testevt.o
+    0x0800f310   0x00000011   Data   RO         3289    .conststring        testevt.o
+    0x0800f321   0x00000028   Data   RO         3318    .conststring        testheap.o
+    0x0800f349   0x00000020   Data   RO         3343    .conststring        testmbox.o
+    0x0800f369   0x0000000f   Data   RO         3371    .conststring        testmsg.o
+    0x0800f378   0x00000021   Data   RO         3401    .conststring        testmtx.o
+    0x0800f399   0x00000019   Data   RO         3402    .conststring        testmtx.o
+    0x0800f3b2   0x00000010   Data   RO         3403    .conststring        testmtx.o
+    0x0800f3c2   0x00000015   Data   RO         3404    .conststring        testmtx.o
+    0x0800f3d7   0x00000018   Data   RO         3405    .conststring        testmtx.o
+    0x0800f3ef   0x00000014   Data   RO         3406    .conststring        testmtx.o
+    0x0800f403   0x0000001c   Data   RO         3431    .conststring        testpools.o
+    0x0800f41f   0x00000015   Data   RO         3458    .conststring        testqueues.o
+    0x0800f434   0x00000016   Data   RO         3459    .conststring        testqueues.o
+    0x0800f44a   0x00000016   Data   RO         3491    .conststring        testsem.o
+    0x0800f460   0x00000014   Data   RO         3492    .conststring        testsem.o
+    0x0800f474   0x0000001f   Data   RO         3493    .conststring        testsem.o
+    0x0800f493   0x00000021   Data   RO         3494    .conststring        testsem.o
+    0x0800f4b4   0x00000017   Data   RO         3579    .conststring        testsys.o
+    0x0800f4cb   0x0000001c   Data   RO         3580    .conststring        testsys.o
+    0x0800f4e7   0x00000012   Data   RO         3581    .conststring        testsys.o
+    0x0800f4f9   0x0000001b   Data   RO         3675    .conststring        testthd.o
+    0x0800f514   0x0000001b   Data   RO         3676    .conststring        testthd.o
+    0x0800f52f   0x00000019   Data   RO         3677    .conststring        testthd.o
+    0x0800f548   0x00000010   Data   RO         3678    .conststring        testthd.o
+    0x0800f558   0x00000000   Data   RO         3945    Region$$Table       anon$$obj.o
+
+
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00008078, Max: 0x00020000, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   0x00000008   Data   RW          625    .data               chmemcore.o
+    0x20000008   0x00000004   Data   RW         2156    .data               mqttpacket.o
+    0x2000000c   0x0000000c   Data   RW         2535    .data               sockets.o
+    0x20000018   0x00000010   Data   RW         2558    .data               tcpip.o
+    0x20000028   0x00000004   Data   RW         2656    .data               dhcp.o
+    0x2000002c   0x00000010   Data   RW         2699    .data               dns.o
+    0x2000003c   0x00000010   Data   RW         2782    .data               mem.o
+    0x2000004c   0x0000000c   Data   RW         2864    .data               netif.o
+    0x20000058   0x00000004   Data   RW         2896    .data               raw.o
+    0x2000005c   0x0000004c   Data   RW         2960    .data               tcp.o
+    0x200000a8   0x0000001c   Data   RW         2989    .data               tcp_in.o
+    0x200000c4   0x00000004   Data   RW         3046    .data               udp.o
+    0x200000c8   0x00000044   Data   RW         3117    .data               test.o
+    0x2000010c   0x00000008   Data   RW         3290    .data               testevt.o
+    0x20000114   0x00000028   Data   RW         3344    .data               testmbox.o
+    0x2000013c   0x00000028   Data   RW         3407    .data               testmtx.o
+    0x20000164   0x0000000c   Data   RW         3432    .data               testpools.o
+    0x20000170   0x00000048   Data   RW         3460    .data               testqueues.o
+    0x200001b8   0x0000000c   Data   RW         3495    .data               testsem.o
+    0x200001c4   0x00000004   PAD
+    0x200001c8   0x00000020   Zero   RW          517    .bss                chheap.o
+    0x200001e8   0x000001d8   Zero   RW          934    .bss                chschd.o
+    0x200003c0   0x00000020   Zero   RW         1626    .bss                gpt_lld.o
+    0x200003e0   0x00000078   Zero   RW         1657    .bss                serial_lld.o
+    0x20000458   0x00000560   Zero   RW         1898    .bss                main.o
+    0x200009b8   0x00000550   Zero   RW         1958    .bss                mqtt.o
+    0x20000f08   0x00000550   Zero   RW         2236    .bss                web.o
+    0x20001458   0x00000050   Zero   RW         2533    .bss                sockets.o
+    0x200014a8   0x00000660   Zero   RW         2698    .bss                dns.o
+    0x20001b08   0x00002814   Zero   RW         2781    .bss                mem.o
+    0x2000431c   0x0000274b   Zero   RW         2808    .bss                memp.o
+    0x20006a67   0x00000001   PAD
+    0x20006a68   0x00000038   Zero   RW         3113    .bss                test.o
+    0x20006aa0   0x00000910   Zero   RW         3114    .bss                test.o
+    0x200073b0   0x00000078   Zero   RW         3195    .bss                testbmk.o
+    0x20007428   0x0000002c   Zero   RW         3252    .bss                testdyn.o
+    0x20007454   0x00000004   PAD
+    0x20007458   0x00000020   Zero   RW         3315    .bss                testheap.o
+    0x20007478   0x00000400   Zero   RW          289    CSTACK              cstartup.o
+    0x20007878   0x00000400   Zero   RW          290    HEAP                cstartup.o
+    0x20007c78   0x00000400   Zero   RW          288    MSTACK              cstartup.o
+
+
+    Execution Region RW_IRAM2 (Base: 0x20020000, Size: 0x00000000, Max: 0x00000001, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20020000   0x00000000   Data   RO         3947    linker$$defined$$symbols  anon$$obj.o
+

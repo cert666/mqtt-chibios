@@ -1,0 +1,9 @@
+.\obj\mqttdeserializepublish.o: ..\..\..\..\..\mqtt\mqtt\MQTTDeserializePublish.c
+.\obj\mqttdeserializepublish.o: ..\..\..\..\..\mqtt\mqtt\MQTTPacket.h
+.\obj\mqttdeserializepublish.o: ..\..\..\..\..\mqtt\mqtt\MQTTConnect.h
+.\obj\mqttdeserializepublish.o: ..\..\..\..\..\mqtt\mqtt\MQTTPublish.h
+.\obj\mqttdeserializepublish.o: ..\..\..\..\..\mqtt\mqtt\MQTTSubscribe.h
+.\obj\mqttdeserializepublish.o: ..\..\..\..\..\mqtt\mqtt\MQTTUnsubscribe.h
+.\obj\mqttdeserializepublish.o: ..\..\..\..\..\mqtt\mqtt\MQTTFormat.h
+.\obj\mqttdeserializepublish.o: ..\..\..\..\..\mqtt\mqtt\MQTTPacket.h
+.\obj\mqttdeserializepublish.o: C:\Keil_472a\ARM\ARMCC\bin\..\include\string.h

@@ -1,0 +1,41 @@
+#! armcc -E --cpu Cortex-M4
+;
+; scatter file defining the memory layout
+;
+
+; ---------------------- configuration settings --------------------------------
+#define FLASH_BASE                  0x08000000              
+#define LR_FW_MAXSIZE               0x0000F000
+#define RAM_BASE                    0x20000000
+#define RAM_SIZE                    0x00002000
+#define STACK_SIZE                      0x0400
+; ------------------------------------------------------------------------------
+
+; calculate the stack start address
+; the stack is located at the end of the RAM, the initial stack pointer will therefore be the 
+; last address of the RAM
+#define STACK_BASE (RAM_BASE + RAM_SIZE - STACK_SIZE)
+
+LR_FW       FLASH_BASE      LR_FW_MAXSIZE
+{
+    ER_FW( +0 )
+    {
+        ;*( VectorsArea, +First )
+        * ( +RO )
+    }
+    ER_FW_RW        RAM_BASE
+    {
+        * ( +RW )
+        * ( ramfuncs )
+    }
+    ER_FW_ZI    + 0
+    {
+        * ( +ZI )
+    }
+    ARM_LIB_STACK ( STACK_BASE ) UNINIT EMPTY STACK_SIZE
+    {
+    }
+    ER_FW_RAM_END ImageLimit(ER_FW_ZI) EMPTY UNINIT  ImageBase(ARM_LIB_STACK) - ImageLimit(ER_FW_ZI)
+    {
+    } 
+}
