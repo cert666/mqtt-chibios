@@ -66,7 +66,7 @@ char *inet_ntoa(struct in_addr addr); /* returns ptr to static buffer; not reent
 #endif /* ntohl */
 
 #ifndef LWIP_PLATFORM_BYTESWAP
-#define LWIP_PLATFORM_BYTESWAP 0
+#define LWIP_PLATFORM_BYTESWAP 1
 #endif
 
 #if BYTE_ORDER == BIG_ENDIAN
@@ -82,7 +82,7 @@ char *inet_ntoa(struct in_addr addr); /* returns ptr to static buffer; not reent
 #define htonl lwip_htonl
 #define ntohl lwip_ntohl
 #endif /* LWIP_PREFIX_BYTEORDER_FUNCS */
-#if LWIP_PLATFORM_BYTESWAP
+#if LWIP_PLATFORM_BYTESWAP == 1
 #define htons(x) LWIP_PLATFORM_HTONS(x)
 #define ntohs(x) LWIP_PLATFORM_HTONS(x)
 #define htonl(x) LWIP_PLATFORM_HTONL(x)

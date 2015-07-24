@@ -16,7 +16,6 @@
 
 #include "MQTTlwip.h"
 
-
 char expired(Timer* timer)
 {
 	return ((int) timer->end_time - (int) chTimeNow()) < 0;

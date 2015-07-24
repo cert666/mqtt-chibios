@@ -135,6 +135,11 @@ struct netconn {
       (or connections to arrive for listening netconns) */
   int recv_timeout;
 #endif /* LWIP_SO_RCVTIMEO */
+  #if LWIP_SO_SNDTIMEO
+  /** timeout to wait for new data to be send
+      (or connections to arrive for listening netconns) */
+  int send_timeout;
+#endif /* LWIP_SO_SNDTIMEO */
 #if LWIP_SO_RCVBUF
   /** maximum amount of bytes queued in recvmbox */
   int recv_bufsize;
@@ -212,6 +217,40 @@ err_t             netconn_gethostbyname(const char *name, struct ip_addr *addr);
 
 #define netconn_err(conn)          ((conn)->err)
 #define netconn_recv_bufsize(conn) ((conn)->recv_bufsize)
+
+#define netconn_set_nonblocking(conn, val)  do { if(val) { \
+   (conn)->flags |= NETCONN_FLAG_NON_BLOCKING; \
+ } else { \
+   (conn)->flags &= ~ NETCONN_FLAG_NON_BLOCKING; }} while(0)
+ 
+ #define netconn_is_nonblocking(conn)        (((conn)->flags & NETCONN_FLAG_NON_BLOCKING) != 0)
+ 
+ #define netconn_set_noautorecved(conn, val)  do { if(val) { \
+   (conn)->flags |= NETCONN_FLAG_NO_AUTO_RECVED; \
+ } else { \
+   (conn)->flags &= ~ NETCONN_FLAG_NO_AUTO_RECVED; }} while(0)
+ 
+ #define netconn_get_noautorecved(conn)        (((conn)->flags & NETCONN_FLAG_NO_AUTO_RECVED) != 0)
+ 
+ #if LWIP_SO_SNDTIMEO
+ 
+ #define netconn_set_sendtimeout(conn, timeout)      ((conn)->send_timeout = (timeout))
+ 
+ #define netconn_get_sendtimeout(conn)               ((conn)->send_timeout)
+ #endif /* LWIP_SO_SNDTIMEO */
+ #if LWIP_SO_RCVTIMEO
+ 
+ #define netconn_set_recvtimeout(conn, timeout)      ((conn)->recv_timeout = (timeout))
+ 
+ #define netconn_get_recvtimeout(conn)               ((conn)->recv_timeout)
+ #endif /* LWIP_SO_RCVTIMEO */
+ #if LWIP_SO_RCVBUF
+ 
+ #define netconn_set_recvbufsize(conn, recvbufsize)  ((conn)->recv_bufsize = (recvbufsize))
+ 
+ #define netconn_get_recvbufsize(conn)               ((conn)->recv_bufsize)
+ #endif /* LWIP_SO_RCVBUF*/
+
 
 #ifdef __cplusplus
 }

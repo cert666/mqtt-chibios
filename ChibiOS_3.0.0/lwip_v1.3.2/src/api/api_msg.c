@@ -545,6 +545,10 @@ struct netconn* netconn_alloc(enum netconn_type t, netconn_callback callback)
 #if LWIP_SO_RCVTIMEO
   conn->recv_timeout = 0;
 #endif /* LWIP_SO_RCVTIMEO */
+  #if LWIP_SO_SNDTIMEO
+  conn->send_timeout = 0;
+#endif /* LWIP_SO_SNDTIMEO */
+  
 #if LWIP_SO_RCVBUF
   conn->recv_bufsize = RECV_BUFSIZE_DEFAULT;
 #endif /* LWIP_SO_RCVBUF */
