@@ -1,9 +1,0 @@
-.\obj\mqttconnectclient.o: ..\..\..\..\..\mqtt\mqtt\MQTTConnectClient.c
-.\obj\mqttconnectclient.o: ..\..\..\..\..\mqtt\mqtt\MQTTPacket.h
-.\obj\mqttconnectclient.o: ..\..\..\..\..\mqtt\mqtt\MQTTConnect.h
-.\obj\mqttconnectclient.o: ..\..\..\..\..\mqtt\mqtt\MQTTPublish.h
-.\obj\mqttconnectclient.o: ..\..\..\..\..\mqtt\mqtt\MQTTSubscribe.h
-.\obj\mqttconnectclient.o: ..\..\..\..\..\mqtt\mqtt\MQTTUnsubscribe.h
-.\obj\mqttconnectclient.o: ..\..\..\..\..\mqtt\mqtt\MQTTFormat.h
-.\obj\mqttconnectclient.o: ..\..\..\..\..\mqtt\mqtt\MQTTPacket.h
-.\obj\mqttconnectclient.o: C:\Keil_472a\ARM\ARMCC\bin\..\include\string.h

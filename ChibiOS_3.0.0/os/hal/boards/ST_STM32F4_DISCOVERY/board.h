@@ -29,6 +29,13 @@
 
 
 /*
+ * Ethernet PHY type.
+ */
+#define DP83848_PHY_ADDRESS       0x01 /* Relative to STM324xG-EVAL Board */ 
+#define BOARD_PHY_ID                DP83848_PHY_ADDRESS//MII_DP83848C_ID
+#define BOARD_PHY_RMII
+
+/*
  * Board oscillators-related settings.
  * NOTE: LSE not fitted.
  */

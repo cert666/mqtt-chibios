@@ -60,6 +60,9 @@
 #include "arch/cc.h"
 #include "arch/sys_arch.h"
 
+
+struct sys_timeouts lwip_system_timeouts = NULL; // Default timeouts list for lwIP
+
 void sys_init(void) {
 
 }
@@ -287,4 +290,22 @@ u32_t sys_now(void) {
 #else
   return (u32_t)(((u64_t)(osalOsGetSystemTimeX() - 1) * 1000) / OSAL_ST_FREQUENCY) + 1;
 #endif
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*
+  Returns a pointer to the per-thread sys_timeouts structure. In lwIP,
+  each thread has a list of timeouts which is represented as a linked
+  list of sys_timeout structures. The sys_timeouts structure holds a
+  pointer to a linked list of timeouts. This function is called by
+  the lwIP timeout scheduler and must not return a NULL value.
+
+  In a single threaded sys_arch implementation, this function will
+  simply return a pointer to a global sys_timeouts variable stored in
+  the sys_arch module.
+*/
+
+
+struct sys_timeouts *sys_arch_timeouts(void) {
+   return &lwip_system_timeouts;
 }

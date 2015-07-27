@@ -1,9 +1,0 @@
-.\obj\mqttsubscribeserver.o: ..\..\..\..\..\mqtt\mqtt\MQTTSubscribeServer.c
-.\obj\mqttsubscribeserver.o: ..\..\..\..\..\mqtt\mqtt\MQTTPacket.h
-.\obj\mqttsubscribeserver.o: ..\..\..\..\..\mqtt\mqtt\MQTTConnect.h
-.\obj\mqttsubscribeserver.o: ..\..\..\..\..\mqtt\mqtt\MQTTPublish.h
-.\obj\mqttsubscribeserver.o: ..\..\..\..\..\mqtt\mqtt\MQTTSubscribe.h
-.\obj\mqttsubscribeserver.o: ..\..\..\..\..\mqtt\mqtt\MQTTUnsubscribe.h
-.\obj\mqttsubscribeserver.o: ..\..\..\..\..\mqtt\mqtt\MQTTFormat.h
-.\obj\mqttsubscribeserver.o: ..\..\..\..\..\mqtt\mqtt\MQTTPacket.h
-.\obj\mqttsubscribeserver.o: C:\Keil_472a\ARM\ARMCC\bin\..\include\string.h

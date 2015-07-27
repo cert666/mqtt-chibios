@@ -18,19 +18,22 @@
 
 char expired(Timer* timer)
 {
-	return ((int) timer->end_time - (int) chTimeNow()) < 0;
+	//return ((int) timer->end_time - (int) chTimeNow()) < 0;
+    return ((int) timer->end_time - (int) chVTGetSystemTimeX()) < 0;
 }
 
 
 void countdown_ms(Timer* timer, unsigned int timeout)
 {
-	timer->end_time = chTimeNow() + MS2ST(timeout);
+	//timer->end_time = chTimeNow() + MS2ST(timeout);
+    timer->end_time = chVTGetSystemTimeX() + MS2ST(timeout);
 }
 
 
 void countdown(Timer* timer, unsigned int timeout)
 {
-	timer->end_time = chTimeNow() + S2ST(timeout);
+	//timer->end_time = chTimeNow() + S2ST(timeout);
+    timer->end_time = chVTGetSystemTimeX() + S2ST(timeout);
 }
 
 /* backport ST2MS from ChibiOS 3.0 */
@@ -40,7 +43,8 @@ void countdown(Timer* timer, unsigned int timeout)
 
 int left_ms(Timer* timer)
 {
-	return ST2MS(timer->end_time - chTimeNow());
+	//return ST2MS(timer->end_time - chTimeNow());
+    return ST2MS(timer->end_time - chVTGetSystemTimeX());
 }
 
 

@@ -69,8 +69,12 @@
 #include <lwip/stats.h>
 #include <lwip/snmp.h>
 #include <lwip/tcpip.h>
+#include "lwip/netif.h"
 #include "netif/etharp.h"
 #include "netif/ppp_oe.h"
+
+#include "call_back_fns.h"
+//#include "mac_lld.h"
 
 #if LWIP_DHCP
 #include <lwip/dhcp.h>
@@ -276,14 +280,18 @@ static THD_FUNCTION(lwip_thread, p) {
       bool current_link_status = macPollLinkStatus(&ETHD1);
       if (current_link_status != netif_is_link_up(&thisif)) {
         if (current_link_status) {
-          tcpip_callback_with_block((tcpip_callback_fn) netif_set_link_up,
+//          tcpip_callback_with_block((tcpip_callback_fn) netif_set_link_up,
+//                                     &thisif, 0);
+                      tcpip_callback_with_block(netif_set_link_up,
                                      &thisif, 0);
 #if LWIP_DHCP
           dhcp_start(&thisif);
 #endif
         }
         else {
-          tcpip_callback_with_block((tcpip_callback_fn) netif_set_link_down,
+//          tcpip_callback_with_block((tcpip_callback_fn) netif_set_link_down,
+//                                     &thisif, 0);
+                      tcpip_callback_with_block( netif_set_link_down,
                                      &thisif, 0);
 #if LWIP_DHCP
           dhcp_stop(&thisif);

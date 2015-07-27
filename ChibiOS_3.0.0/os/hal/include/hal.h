@@ -52,6 +52,7 @@
 #include "i2s.h"
 #include "icu.h"
 #include "mac.h"
+#include "mac_lld.h"
 #include "mii.h"
 #include "pwm.h"
 #include "rtc.h"
