@@ -81,7 +81,7 @@ void sys_init(void) {
 //  }
 //}
 sys_sem_t sys_sem_new(u8_t count) {
- sys_sem_t *sem;
+ static sys_sem_t sem;
     
   sem = chHeapAlloc(NULL, sizeof(semaphore_t));
   if (sem == 0) {
@@ -89,9 +89,9 @@ sys_sem_t sys_sem_new(u8_t count) {
     return SYS_SEM_NULL;
   }
   else {
-    chSemObjectInit(*sem, (cnt_t)count);
+    chSemObjectInit(sem, (cnt_t)count);
   //  SYS_STATS_INC_USED(sem.err);
-    return *sem;
+    return sem;
   }
 }
 
